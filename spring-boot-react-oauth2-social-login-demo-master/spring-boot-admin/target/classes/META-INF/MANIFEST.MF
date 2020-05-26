@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-boot-admin
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: aranv
+Implementation-Vendor-Id: com.javainuse
+Build-Jdk: 1.8.0_241
+Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-
+ admin/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

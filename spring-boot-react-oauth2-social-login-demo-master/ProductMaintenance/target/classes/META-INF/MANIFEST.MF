@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: ProductMaintenance
+Implementation-Version: 1
+Built-By: aranv
+Implementation-Vendor-Id: edu.aspire
+Build-Jdk: 1.8.0_241
+Implementation-URL: http://projects.spring.io/spring-boot/ProductMaint
+ enance/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
