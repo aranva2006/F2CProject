@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.controller;
+package com.f2c.custmaint.controller;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitMessagingTemplate;

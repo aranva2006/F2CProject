@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.component;
+package com.f2c.custmaint.component;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -16,12 +16,12 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.stereotype.Service;
 
-import com.brownfield.pss.book.controller.Sender;
-import com.brownfield.pss.book.entity.BookingRecord;
-import com.brownfield.pss.book.entity.Inventory;
-import com.brownfield.pss.book.entity.Passenger;
-import com.brownfield.pss.book.repository.BookingRepository;
-import com.brownfield.pss.book.repository.InventoryRepository;
+import com.f2c.custmaint.controller.Sender;
+import com.f2c.custmaint.entity.BookingRecord;
+import com.f2c.custmaint.entity.Inventory;
+import com.f2c.custmaint.entity.Passenger;
+import com.f2c.custmaint.repository.BookingRepository;
+import com.f2c.custmaint.repository.InventoryRepository;
 
 @Configuration
 class AppConfig {

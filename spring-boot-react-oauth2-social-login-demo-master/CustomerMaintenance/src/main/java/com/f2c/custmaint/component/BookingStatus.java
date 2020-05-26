@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.component;
+package com.f2c.custmaint.component;
 
 public class BookingStatus {
 	public static final String BOOKING_CONFIRMED = "BOOKING_CONFIRMED"; 

@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.controller;
+package com.f2c.custmaint.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brownfield.pss.book.component.BookingComponent;
-import com.brownfield.pss.book.entity.BookingRecord;
+import com.f2c.custmaint.component.BookingComponent;
+import com.f2c.custmaint.entity.BookingRecord;
 
 @RestController
 @CrossOrigin

@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.component;
+package com.f2c.custmaint.component;
 
 public class BookingException extends RuntimeException  {
 	

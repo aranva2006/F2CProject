@@ -1,4 +1,4 @@
-package com.brownfield.pss.book.entity;
+package com.f2c.custmaint.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

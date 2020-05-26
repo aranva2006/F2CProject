@@ -1,4 +1,4 @@
-package com.brownfield.pss.book;
+package com.f2c.custmaint;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -12,12 +12,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.brownfield.pss.book.component.BookingComponent;
-import com.brownfield.pss.book.entity.BookingRecord;
-import com.brownfield.pss.book.entity.Inventory;
-import com.brownfield.pss.book.entity.Passenger;
-import com.brownfield.pss.book.repository.BookingRepository;
-import com.brownfield.pss.book.repository.InventoryRepository;
+import com.f2c.custmaint.component.BookingComponent;
+import com.f2c.custmaint.entity.BookingRecord;
+import com.f2c.custmaint.entity.Inventory;
+import com.f2c.custmaint.entity.Passenger;
+import com.f2c.custmaint.repository.BookingRepository;
+import com.f2c.custmaint.repository.InventoryRepository;
 
 @SpringBootApplication(scanBasePackages= {"com.brownfield.pss.resourceserver.config", "com.brownfield.pss.book.controller", "com.brownfield.pss.book.component"})
 public class Application implements CommandLineRunner{

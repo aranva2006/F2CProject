@@ -1,4 +1,4 @@
-package com.brownfield.pss.resourceserver.config;
+package com.f2c.custmaint.resourceserver.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
