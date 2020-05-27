@@ -8,28 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.f2c.custmaint.component.BookingComponent;
-import com.f2c.custmaint.entity.BookingRecord;
+import com.f2c.custmaint.component.CustomerComponent;
+import com.f2c.custmaint.entity.User;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/booking")
-public class BookingController {
-	BookingComponent bookingComponent;
+@RequestMapping("/custmaint")
+public class CustomerController {
+	CustomerComponent customerComponent;
 	
 	@Autowired
-	BookingController(BookingComponent bookingComponent){
-		this.bookingComponent = bookingComponent;
+	CustomerController(CustomerComponent customerComponent){
+		this.customerComponent = customerComponent;
 	}
 
 	@RequestMapping(value="/create" , method = RequestMethod.POST)
-	long book(@RequestBody BookingRecord record){
-		System.out.println("Booking Request" + record); 
-		return bookingComponent.book(record);
-	}
+	public String createUser(@RequestBody User user){
+		return customerComponent.create(user);
+	}	
 	
 	@RequestMapping("/get/{id}")
-	BookingRecord getBooking(@PathVariable long id){
-		return bookingComponent.getBooking(id);
+	public User getCustomer(@PathVariable String phone_number){
+		return customerComponent.getCustomer(phone_number);
 	}	
 }
