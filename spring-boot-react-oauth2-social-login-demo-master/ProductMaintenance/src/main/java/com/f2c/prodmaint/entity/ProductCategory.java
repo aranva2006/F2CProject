@@ -1,8 +1,13 @@
-package com.f2c.custmaint.entity;
+package com.f2c.prodmaint.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 /**
@@ -26,8 +31,8 @@ public class ProductCategory implements Serializable {
 	private String productCategoryDesc;
 
 	//bi-directional many-to-one association to Product
-	@OneToMany(mappedBy="productCategory")
-	private List<Product> products;
+	@OneToOne(mappedBy="productCategory")
+	private Product product;
 
 	public ProductCategory() {
 	}
@@ -56,26 +61,12 @@ public class ProductCategory implements Serializable {
 		this.productCategoryDesc = productCategoryDesc;
 	}
 
-	public List<Product> getProducts() {
-		return this.products;
+	public Product getProduct() {
+		return this.product;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setProductCategory(this);
-
-		return product;
-	}
-
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setProductCategory(null);
-
-		return product;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }

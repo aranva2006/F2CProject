@@ -1,4 +1,4 @@
-package com.f2c.custmaint.entity;
+package com.f2c.prodmaint.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -29,8 +29,8 @@ public class Product implements Serializable {
 	private String productDesc;
 
 	//bi-directional many-to-one association to ProductCategory
-	@ManyToOne
-	@JoinColumn(name="product_category_id")
+	@OneToOne
+	@JoinColumn(name="product_category_id", referencedColumnName = "product_category_id")
 	private ProductCategory productCategory;
 
 	//bi-directional many-to-one association to ProductStock

@@ -1,11 +1,11 @@
-package com.f2c.custmaint;
+package com.f2c.prodmaint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages= {"com.brownfield.pss.resourceserver.config", "com.brownfield.pss.book.controller", "com.brownfield.pss.book.component"})
+@SpringBootApplication(scanBasePackages= {"com.f2c.prodmaint.resourceserver.config", "com.f2c.prodmaint.controller", "com.f2c.prodmaint.component"})
 public class Application{
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 	
