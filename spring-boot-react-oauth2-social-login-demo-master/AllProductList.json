@@ -1,0 +1,442 @@
+[
+    {
+        "productId": 1,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A1",
+        "productDesc": "GROUND NUT 500 GM A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 1,
+                "stockStatusId": 1,
+                "orderedQuantity": 200,
+                "stocksOpen": 200,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 2,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A2",
+        "productDesc": "GROUND NUT 500 GM A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 2,
+                "stockStatusId": 2,
+                "orderedQuantity": 250,
+                "stocksOpen": 250,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 3,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A3",
+        "productDesc": "GROUND NUT 500 GM A3 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 3,
+                "stockStatusId": 3,
+                "orderedQuantity": 150,
+                "stocksOpen": 150,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 4,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A4",
+        "productDesc": "GROUND NUT 500 GM A4 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 4,
+                "stockStatusId": 4,
+                "orderedQuantity": 2500,
+                "stocksOpen": 2500,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 5,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A5",
+        "productDesc": "GROUND NUT 500 GM A5 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 5,
+                "stockStatusId": 5,
+                "orderedQuantity": 1500,
+                "stocksOpen": 1500,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 6,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A6",
+        "productDesc": "GROUND NUT 500 GM A6 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 6,
+                "stockStatusId": 6,
+                "orderedQuantity": 1000,
+                "stocksOpen": 1000,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 7,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A7",
+        "productDesc": "GROUND NUT 500 GM A7 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 7,
+                "stockStatusId": 7,
+                "orderedQuantity": 1500,
+                "stocksOpen": 1500,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 8,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A8",
+        "productDesc": "GROUND NUT 500 GM A8 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 8,
+                "stockStatusId": 8,
+                "orderedQuantity": 1500,
+                "stocksOpen": 1500,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 9,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "GN_500GM_A9",
+        "productDesc": "GROUND NUT 500 GM A9 QUALITY",
+        "productCategory": {
+            "product_category_id": 1,
+            "product_category_code": "PULSES",
+            "product_category_desc": "PULSES"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 9,
+                "stockStatusId": 9,
+                "orderedQuantity": 1500,
+                "stocksOpen": 1500,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 10,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_1KG_A1",
+        "productDesc": "MANGO 1 KG A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 10,
+                "stockStatusId": 10,
+                "orderedQuantity": 1000,
+                "stocksOpen": 1000,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 11,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_2KG_A2",
+        "productDesc": "MANGO 2 KG A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 11,
+                "stockStatusId": 11,
+                "orderedQuantity": 800,
+                "stocksOpen": 800,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 12,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_3KG_A3",
+        "productDesc": "MANGO 3 KG A3 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 12,
+                "stockStatusId": 12,
+                "orderedQuantity": 700,
+                "stocksOpen": 700,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 13,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_4KG_A4",
+        "productDesc": "MANGO 4 KG A4 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 13,
+                "stockStatusId": 13,
+                "orderedQuantity": 600,
+                "stocksOpen": 600,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 14,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_5KG_A5",
+        "productDesc": "MANGO 5 KG A5 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 14,
+                "stockStatusId": 14,
+                "orderedQuantity": 200,
+                "stocksOpen": 200,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 15,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_6KG_A6",
+        "productDesc": "MANGO 6 KG A6 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 15,
+                "stockStatusId": 15,
+                "orderedQuantity": 100,
+                "stocksOpen": 100,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 16,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_7KG_A7",
+        "productDesc": "MANGO 7 KG A7 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": [
+            {
+                "productDetailId": 16,
+                "stockStatusId": 16,
+                "orderedQuantity": 50,
+                "stocksOpen": 50,
+                "stocksClosed": 0
+            }
+        ]
+    },
+    {
+        "productId": 17,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_8KG_A8",
+        "productDesc": "MANGO 8 KG A8 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 18,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "MANGO_9KG_A9",
+        "productDesc": "MANGO 9 KG A9 QUALITY",
+        "productCategory": {
+            "product_category_id": 2,
+            "product_category_code": "FRIUTS",
+            "product_category_desc": "FRIUTS"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 19,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "RC_1KG_A1",
+        "productDesc": "RED CHILLI 1 KG A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 4,
+            "product_category_code": "SPICES",
+            "product_category_desc": "SPICES"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 20,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "RC_500GM_A1",
+        "productDesc": "RED CHILLI 500 GM A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 4,
+            "product_category_code": "SPICES",
+            "product_category_desc": "SPICES"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 21,
+        "lastAdded": "2020-05-30T10:12:21.000+0000",
+        "productCode": "RC_1KG_A2",
+        "productDesc": "RED CHILLI 1 KG A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 4,
+            "product_category_code": "SPICES",
+            "product_category_desc": "SPICES"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 22,
+        "lastAdded": "2020-05-30T10:12:22.000+0000",
+        "productCode": "RC_500GM_A2",
+        "productDesc": "RED CHILLI 500 GM A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 4,
+            "product_category_code": "SPICES",
+            "product_category_desc": "SPICES"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 23,
+        "lastAdded": "2020-05-30T10:12:22.000+0000",
+        "productCode": "CASHEW_1KG_A1",
+        "productDesc": "GROUND NUT 1 KG A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 5,
+            "product_category_code": "NUTS",
+            "product_category_desc": "NUTS"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 24,
+        "lastAdded": "2020-05-30T10:12:22.000+0000",
+        "productCode": "CASHEW_500GM_A1",
+        "productDesc": "GROUND NUT 500 GM A1 QUALITY",
+        "productCategory": {
+            "product_category_id": 5,
+            "product_category_code": "NUTS",
+            "product_category_desc": "NUTS"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 25,
+        "lastAdded": "2020-05-30T10:12:22.000+0000",
+        "productCode": "CASHEW_1KG_A2",
+        "productDesc": "GROUND NUT 1 KG A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 5,
+            "product_category_code": "NUTS",
+            "product_category_desc": "NUTS"
+        },
+        "productStocks": []
+    },
+    {
+        "productId": 26,
+        "lastAdded": "2020-05-30T10:12:22.000+0000",
+        "productCode": "CASHEW_500GM_A2",
+        "productDesc": "GROUND NUT 500 GM A2 QUALITY",
+        "productCategory": {
+            "product_category_id": 5,
+            "product_category_code": "NUTS",
+            "product_category_desc": "NUTS"
+        },
+        "productStocks": []
+    }
+]
