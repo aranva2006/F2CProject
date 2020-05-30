@@ -13,7 +13,7 @@ drop table Society_Details;
 drop table Payment_Details;
 
 CREATE TABLE `Users` (
-	`phone_number` VARCHAR(255) NOT NULL,
+	`phone_number` VARCHAR(255) NOT NULL UNIQUE,
 	`firstname` VARCHAR(255) NOT NULL,
 	`lastname` VARCHAR(255) NOT NULL,
 	`usertype` VARCHAR(255) NOT NULL,
@@ -114,6 +114,8 @@ ALTER TABLE `Contact_Information` ADD CONSTRAINT `Contact_Information_fk0` FOREI
 ALTER TABLE `Product_stock` ADD CONSTRAINT `Product_stock_fk0` FOREIGN KEY (`product_id`) REFERENCES `Product`(`product_id`);
 
 ALTER TABLE `Product_stock` ADD CONSTRAINT `Product_stock_fk1` FOREIGN KEY (`stock_status_id`) REFERENCES `Stock_Status`(`stock_status_id`);
+
+ALTER TABLE `Contact_Information` ADD UNIQUE `unique_index`(
 
 INSERT INTO Product_Category VALUES(NULL,"PULSES","PULSES");
 INSERT INTO Product_Category VALUES(NULL,"FRIUTS","FRIUTS");
