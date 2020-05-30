@@ -1,38 +1,38 @@
 package com.f2c.prodmaint.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 /**
  * The persistent class for the product_category database table.
  * 
  */
 @Entity
-@Table(name="product_category")
-@NamedQuery(name="ProductCategory.findAll", query="SELECT p FROM ProductCategory p")
+@Table(name = "product_category")
+@NamedQuery(name = "ProductCategory.findAll", query = "SELECT p FROM ProductCategory p")
 public class ProductCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="product_category_id")
+	@Column(name = "product_category_id")
 	private int productCategoryId;
 
-	@Column(name="product_category_code")
+	@Column(name = "product_category_code")
 	private String productCategoryCode;
 
-	@Column(name="product_category_desc")
+	@Column(name = "product_category_desc")
 	private String productCategoryDesc;
 
-	//bi-directional many-to-one association to Product
-	@OneToOne(mappedBy="productCategory")
-	private Product product;
+	@OneToMany(mappedBy = "productCategory", fetch = FetchType.LAZY)
+	private List<Product> products;
 
 	public ProductCategory() {
 	}
@@ -61,12 +61,12 @@ public class ProductCategory implements Serializable {
 		this.productCategoryDesc = productCategoryDesc;
 	}
 
-	public Product getProduct() {
-		return this.product;
+	public List<Product> getProducts() {
+		return this.products;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProduct(List<Product> products) {
+		this.products = products;
 	}
 
 }

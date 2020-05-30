@@ -28,12 +28,10 @@ public class Product implements Serializable {
 	@Column(name="product_desc")
 	private String productDesc;
 
-	//bi-directional many-to-one association to ProductCategory
-	@OneToOne
-	@JoinColumn(name="product_category_id", referencedColumnName = "product_category_id")
+	@ManyToOne
+	@JoinColumn(name="product_category_id")
 	private ProductCategory productCategory;
 
-	//bi-directional many-to-one association to ProductStock
 	@OneToMany(mappedBy="product")
 	private List<ProductStock> productStocks;
 

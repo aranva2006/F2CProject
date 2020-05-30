@@ -18,8 +18,8 @@ public class StockStatus implements Serializable {
 	@Column(name="stock_status_id")
 	private int stockStatusId;
 
-	@Column(name="product_detail_id")
-	private int productDetailId;
+	@OneToOne(mappedBy = "stockStatus")
+	private ProductStock productStock;
 
 	@Column(name="stocks_closed")
 	private int stocksClosed;
@@ -38,14 +38,6 @@ public class StockStatus implements Serializable {
 		this.stockStatusId = stockStatusId;
 	}
 
-	public int getProductDetailId() {
-		return this.productDetailId;
-	}
-
-	public void setProductDetailId(int productDetailId) {
-		this.productDetailId = productDetailId;
-	}
-
 	public int getStocksClosed() {
 		return this.stocksClosed;
 	}
@@ -60,6 +52,14 @@ public class StockStatus implements Serializable {
 
 	public void setStocksOpen(int stocksOpen) {
 		this.stocksOpen = stocksOpen;
+	}
+
+	public ProductStock getProductStock() {
+		return productStock;
+	}
+
+	public void setProductStock(ProductStock productStock) {
+		this.productStock = productStock;
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.f2c.prodmaint.component.ProductComponent;
 import com.f2c.prodmaint.entity.Product;
+import com.f2c.prodmaint.entity.beans.ProductDetails;
 
 @RestController
 @CrossOrigin
@@ -24,12 +25,12 @@ public class ProductController {
 	}
 
 	@RequestMapping(value="/activeProducts" , method = RequestMethod.GET)
-	public List<Product> getAllActiveProducts(){
+	public List<ProductDetails> getAllActiveProducts(){
 		return productComponent.getAllActiveProducts();
 	}
 	
 	@RequestMapping(value="/getProduct/{productCode}" , method = RequestMethod.GET)
-	public Product getProduct(@PathVariable String productCode){
-		return productComponent.getProduct(productCode);
+	public ProductDetails getProduct(@PathVariable String productCode){
+		return productComponent.getProductDetails(productCode);
 	}	
 }

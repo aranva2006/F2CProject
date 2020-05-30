@@ -15,15 +15,18 @@ public class ProductStock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="product_detail_id")
+	@Column(name="product_stock_detail_id")
 	private int productDetailId;
 
 	private int quantity;
 
-	//bi-directional many-to-one association to Product
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="product_id")
 	private Product product;
+	
+	@OneToOne
+	@JoinColumn(name="stock_status_id")
+	private StockStatus stockStatus;
 
 	public ProductStock() {
 	}
@@ -50,6 +53,14 @@ public class ProductStock implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public StockStatus getStockStatus() {
+		return stockStatus;
+	}
+
+	public void setStockStatus(StockStatus stockStatus) {
+		this.stockStatus = stockStatus;
 	}
 
 }
