@@ -1,0 +1,19 @@
+server:
+  port : 8060
+spring:
+    application:
+        name: customer-service
+    
+    datasource:
+        url: jdbc:mysql://localhost:3306/F2C?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+        username: root
+        password: admin
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect

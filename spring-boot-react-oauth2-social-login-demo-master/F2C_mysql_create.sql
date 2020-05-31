@@ -1,7 +1,6 @@
 C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqld
 
 use f2c;
-drop table Contact_Information;
 drop table Customer_Orders;
 drop table Product_stock;
 drop table Stock_Status;
@@ -9,21 +8,23 @@ drop table Product;
 drop table Product_Category;
 drop table User_authentication;
 drop table Users;
+drop table Contact_Information;
 drop table Society_Details;
 drop table Payment_Details;
+drop table USER_TYPE;
 
 CREATE TABLE `Users` (
 	`phone_number` VARCHAR(255) NOT NULL UNIQUE,
 	`firstname` VARCHAR(255) NOT NULL,
 	`lastname` VARCHAR(255) NOT NULL,
-	`usertype` VARCHAR(255) NOT NULL,
 	`scoceity_id` INT NOT NULL,
-	PRIMARY KEY (`phone_number`)
+	`contact_id` INT NOT NULL,
+	`user_type_id` INT NOT NULL,
+	 PRIMARY KEY (`phone_number`)
 );
 
 CREATE TABLE `Contact_Information` (
 	`contact_id` INT NOT NULL AUTO_INCREMENT,
-	`phone_number` VARCHAR(255) NOT NULL,
 	`address_line1` VARCHAR(255) NOT NULL,
 	`address_line2` VARCHAR(255),
 	`email_id` VARCHAR(255),
@@ -105,17 +106,25 @@ CREATE TABLE `Payment_Details` (
 	PRIMARY KEY (`payment_detail_id`)
 );
 
+CREATE TABLE `USER_TYPE` (
+	`user_type_id` INT NOT NULL AUTO_INCREMENT,
+	`USER_TYPE_CODE` VARCHAR(255) NOT NULL,
+	`USER_TYPE_DESC` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`USER_TYPE_ID`)
+);
+
+
 ALTER TABLE `Users` ADD CONSTRAINT `Users_fk0` FOREIGN KEY (`scoceity_id`) REFERENCES `Society_Details`(`scoceity_id`);
 
-ALTER TABLE `Product` ADD CONSTRAINT `Product_fk0` FOREIGN KEY (`product_category_id`) REFERENCES `Product_Category`(`product_category_id`);
+ALTER TABLE `Users` ADD CONSTRAINT `Users_fk2` FOREIGN KEY (`contact_id`) REFERENCES `Contact_Information`(`contact_id`);
 
-ALTER TABLE `Contact_Information` ADD CONSTRAINT `Contact_Information_fk0` FOREIGN KEY (`phone_number`) REFERENCES `Users`(`phone_number`);
+ALTER TABLE `Users` ADD CONSTRAINT `Users_fk3` FOREIGN KEY (`user_type_id`) REFERENCES `USER_TYPE`(`user_type_id`);
+
+ALTER TABLE `Product` ADD CONSTRAINT `Product_fk0` FOREIGN KEY (`product_category_id`) REFERENCES `Product_Category`(`product_category_id`);
 
 ALTER TABLE `Product_stock` ADD CONSTRAINT `Product_stock_fk0` FOREIGN KEY (`product_id`) REFERENCES `Product`(`product_id`);
 
 ALTER TABLE `Product_stock` ADD CONSTRAINT `Product_stock_fk1` FOREIGN KEY (`stock_status_id`) REFERENCES `Stock_Status`(`stock_status_id`);
-
-ALTER TABLE `Contact_Information` ADD UNIQUE `unique_index`(
 
 INSERT INTO Product_Category VALUES(NULL,"PULSES","PULSES");
 INSERT INTO Product_Category VALUES(NULL,"FRIUTS","FRIUTS");
@@ -191,6 +200,33 @@ INSERT INTO Society_Details VALUES(NULL,"SOBHA DREAM ACRES GATE1","BALEGERE ROAD
 INSERT INTO Society_Details VALUES(NULL,"SOBHA DREAM ACRES GATE2","BALEGERE ROAD , PANATHUR MAIN ROAD","VARTHUR","BANGALORE","KARNATAKA","INDIA","560087",NULL);
 INSERT INTO Society_Details VALUES(NULL,"DISHA PARK WEST","BALEGERE ROAD , PANATHUR MAIN ROAD","VARTHUR","BANGALORE","KARNATAKA","INDIA","560087",NULL);
 INSERT INTO Society_Details VALUES(NULL,"DISHA CENTRAL PARK","BALEGERE ROAD , PANATHUR MAIN ROAD","VARTHUR","BANGALORE","KARNATAKA","INDIA","560087",NULL);
+
+INSERT INTO Contact_Information VALUES(NULL,"03042, Sobha Dream Acres","Balegere Road,Varthur Main Road","aranva2006@gmail.com",NULL,"BANGALORE","KARNATAKA","INDIA","560087");
+INSERT INTO Contact_Information VALUES(NULL,"03128, Sobha Dream Acres","Balegere Road,Varthur Main Road","SANTOSH@gmail.com",NULL,"BANGALORE","KARNATAKA","INDIA","560087");
+INSERT INTO Contact_Information VALUES(NULL,"03001, Sobha Dream Acres","Balegere Road,Varthur Main Road","aranva2015@gmail.com",NULL,"BANGALORE","KARNATAKA","INDIA","560087");
+INSERT INTO Contact_Information VALUES(NULL,"03002, Sobha Dream Acres","Balegere Road,Varthur Main Road","venknavg@gmail.com",NULL,"BANGALORE","KARNATAKA","INDIA","560087");
+
+INSERT INTO USER_TYPE VALUES(NULL,"CUSTOMER","End User");
+INSERT INTO USER_TYPE VALUES(NULL,"FARMER","Farmer");
+INSERT INTO USER_TYPE VALUES(NULL,"DEALER","Dealer User");
+INSERT INTO USER_TYPE VALUES(NULL,"ADMIN","Admin User");
+
+
+INSERT INTO Users VALUES("9036135743","Venkata","Naveen G",1,1,1);
+INSERT INTO Users VALUES("9036135742","Santosh","Kulkarni",2,2,1);
+INSERT INTO Users VALUES("9036135741","Kamal","Tarani",3,3,1);
+INSERT INTO Users VALUES("9036135740","Sanjay","Dhiman",4,4,1);
+
+
+CREATE TABLE `Users` (
+	`phone_number` VARCHAR(255) NOT NULL UNIQUE,
+	`firstname` VARCHAR(255) NOT NULL,
+	`lastname` VARCHAR(255) NOT NULL,
+	`scoceity_id` INT NOT NULL,
+	`contact_id` INT NOT NULL,
+	`user_type_id` INT NOT NULL,
+	 PRIMARY KEY (`phone_number`)
+);
 
 COMMIT;
 

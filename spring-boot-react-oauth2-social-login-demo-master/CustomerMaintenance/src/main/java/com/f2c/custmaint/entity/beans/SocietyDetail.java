@@ -1,51 +1,18 @@
-package com.f2c.custmaint.entity;
+package com.f2c.custmaint.entity.beans;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
-
-/**
- * The persistent class for the society_details database table.
- * 
- */
-@Entity
-@Table(name="society_details")
-@NamedQuery(name="SocietyDetail.findAll", query="SELECT s FROM SocietyDetail s")
 public class SocietyDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="scoceity_id")
 	private int scoceityId;
-
-	@Column(name="society_address_line1")
 	private String societyAddressLine1;
-
-	@Column(name="society_address_line2")
 	private String societyAddressLine2;
-
-	@Column(name="society_city")
 	private String societyCity;
-
-	@Column(name="society_contact")
 	private String societyContact;
-
-	@Column(name="society_country")
 	private String societyCountry;
-
-	@Column(name="society_name")
 	private String societyName;
-
-	@Column(name="society_pincode")
 	private String societyPincode;
-
-	@Column(name="society_state")
 	private String societyState;
-
-	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="societyDetail")
-	private List<User> users;
 
 	public SocietyDetail() {
 	}
@@ -121,13 +88,4 @@ public class SocietyDetail implements Serializable {
 	public void setSocietyState(String societyState) {
 		this.societyState = societyState;
 	}
-
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
 }
