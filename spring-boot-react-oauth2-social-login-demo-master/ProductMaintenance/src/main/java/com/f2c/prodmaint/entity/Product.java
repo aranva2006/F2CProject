@@ -19,14 +19,17 @@ public class Product implements Serializable {
 	@Column(name="product_id")
 	private int productId;
 
-	@Column(name="last_added")
-	private Timestamp lastAdded;
-
 	@Column(name="product_code")
 	private String productCode;
 
 	@Column(name="product_desc")
 	private String productDesc;
+	
+	@Column(name="last_added")
+	private Timestamp lastAdded;
+	
+	@Column(name="product_status")
+	private String productStatus;
 
 	@ManyToOne
 	@JoinColumn(name="product_category_id")

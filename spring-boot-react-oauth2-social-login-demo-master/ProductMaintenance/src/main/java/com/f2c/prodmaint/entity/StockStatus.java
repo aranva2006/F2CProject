@@ -18,15 +18,15 @@ public class StockStatus implements Serializable {
 	@Column(name="stock_status_id")
 	private int stockStatusId;
 
-	@OneToOne(mappedBy = "stockStatus")
-	private ProductStock productStock;
-
 	@Column(name="stocks_closed")
 	private int stocksClosed;
 
 	@Column(name="stocks_open")
 	private int stocksOpen;
 
+	@OneToOne(mappedBy = "stockStatus")
+	private ProductStock productStock;
+	
 	public StockStatus() {
 	}
 

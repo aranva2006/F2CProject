@@ -18,37 +18,58 @@ public class ProductStock implements Serializable {
 	@Column(name="product_stock_detail_id")
 	private int productDetailId;
 
-	private int quantity;
+	@Column(name="ordered_quantity")
+	private int orderedQuantity;
+
+	@Column(name="price")
+	private int price;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="product_id")
+	private List<Product> product;
+	
+	@OneToOne
+	@JoinColumn(name="stock_status_id")
+	private StockStatus stockStatus;
+	
+	@OneToOne
+	@JoinColumn(name="product_source_id")
+	private ProductSource productSource;
+
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="product_id")
 	private Product product;
 	
-	@OneToOne
-	@JoinColumn(name="stock_status_id")
-	private StockStatus stockStatus;
-
 	public ProductStock() {
 	}
 
 	public int getProductDetailId() {
-		return this.productDetailId;
+		return productDetailId;
 	}
 
 	public void setProductDetailId(int productDetailId) {
 		this.productDetailId = productDetailId;
 	}
 
-	public int getQuantity() {
-		return this.quantity;
+	public int getOrderedQuantity() {
+		return orderedQuantity;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setOrderedQuantity(int orderedQuantity) {
+		this.orderedQuantity = orderedQuantity;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public Product getProduct() {
-		return this.product;
+		return product;
 	}
 
 	public void setProduct(Product product) {
@@ -61,6 +82,14 @@ public class ProductStock implements Serializable {
 
 	public void setStockStatus(StockStatus stockStatus) {
 		this.stockStatus = stockStatus;
+	}
+
+	public ProductSource getProductSource() {
+		return productSource;
+	}
+
+	public void setProductSource(ProductSource productSource) {
+		this.productSource = productSource;
 	}
 
 }

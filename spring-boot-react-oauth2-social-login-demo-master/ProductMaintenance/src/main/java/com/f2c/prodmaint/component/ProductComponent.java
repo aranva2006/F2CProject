@@ -12,6 +12,8 @@ import com.f2c.prodmaint.entity.Product;
 import com.f2c.prodmaint.entity.ProductStock;
 import com.f2c.prodmaint.entity.beans.ProductCategoryDetails;
 import com.f2c.prodmaint.entity.beans.ProductDetails;
+import com.f2c.prodmaint.entity.beans.ProductSourceDetails;
+import com.f2c.prodmaint.entity.beans.ProductSourceTypeDetails;
 import com.f2c.prodmaint.entity.beans.ProductStockDetails;
 import com.f2c.prodmaint.repository.ProductRepository;
 
@@ -49,10 +51,30 @@ public class ProductComponent {
 		for (ProductStock productStock : product.getProductStocks()) {
 			ProductStockDetails productStockDetails = new ProductStockDetails();
 			productStockDetails.setProductDetailId(productStock.getProductDetailId());
-			productStockDetails.setOrderedQuantity(productStock.getQuantity());
+			productStockDetails.setOrderedQuantity(productStock.getOrderedQuantity());
 			productStockDetails.setStockStatusId(productStock.getStockStatus().getStockStatusId());
 			productStockDetails.setStocksOpen(productStock.getStockStatus().getStocksOpen());
 			productStockDetails.setStocksClosed(productStock.getStockStatus().getStocksClosed());
+			productStockDetails.setPrice(productStock.getPrice());
+			
+			ProductSourceTypeDetails productSourceTypeDetails  = new ProductSourceTypeDetails();
+			productSourceTypeDetails.setProductDetailId(productStock.getProductSource().getProductSourceType().getProductSourceId());
+			productSourceTypeDetails.setProductSourceCode(productStock.getProductSource().getProductSourceType().getProductSourceTypeCode());
+			productSourceTypeDetails.setProductSourceDesc(productStock.getProductSource().getProductSourceType().getProductSourceTypeDesc());
+			
+			ProductSourceDetails productSourceDetails = new ProductSourceDetails();
+			productSourceDetails.setProductSourceId(productStock.getProductSource().getProductSourceId());
+			productSourceDetails.setProductSourceFirstName(productStock.getProductSource().getProductSourceFirstName());
+			productSourceDetails.setProductSourceLastName(productStock.getProductSource().getProductSourceLastName());
+			productSourceDetails.setProductSourceContactNumber1(productStock.getProductSource().getProductSourceContactNumber1());
+			productSourceDetails.setProductSourceContactNumber2(productStock.getProductSource().getProductSourceContactNumber2());
+			productSourceDetails.setProductSourceCity(productStock.getProductSource().getProductSourceCity());
+			productSourceDetails.setProductSourceDistrict(productStock.getProductSource().getProductSourceDistrict());
+			productSourceDetails.setProductSourceState(productStock.getProductSource().getProductSourceState());
+			productSourceDetails.setProductSourceCountry(productStock.getProductSource().getProductSourceCountry());
+			productSourceDetails.setProductSourceTypeDetails(productSourceTypeDetails);
+			productStockDetails.setStockSource(productSourceDetails);
+			
 			productStocks.add(productStockDetails);
 		}
 		productDetails.setProductStocks(productStocks);
