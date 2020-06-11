@@ -1,4 +1,4 @@
-package com.f2c.custmaint.entity.beans;
+package com.f2c.order.entity.beans;
 
 public class UserType {
 	private int userTypeId;

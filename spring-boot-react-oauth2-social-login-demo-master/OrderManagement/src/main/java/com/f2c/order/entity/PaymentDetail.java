@@ -1,4 +1,4 @@
-package com.f2c.custmaint.entity;
+package com.f2c.order.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;

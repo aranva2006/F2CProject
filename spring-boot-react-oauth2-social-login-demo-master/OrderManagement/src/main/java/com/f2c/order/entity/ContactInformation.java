@@ -1,19 +1,48 @@
-package com.f2c.custmaint.entity.beans;
+package com.f2c.order.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+/**
+ * The persistent class for the contact_information database table.
+ * 
+ */
+@Entity
+@Table(name = "contact_information")
+@NamedQuery(name = "ContactInformation.findAll", query = "SELECT c FROM ContactInformation c")
 public class ContactInformation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name = "contact_id")
 	private int contactId;
+
+	@Column(name = "address_line1")
 	private String addressLine1;
+
+	@Column(name = "address_line2")
 	private String addressLine2;
+
+	@Column(name = "alternate_phone")
 	private String alternatePhone;
+
+	@Column(name = "city")
 	private String city;
+
+	@Column(name = "country")
 	private String country;
+
+	@Column(name = "email_id")
 	private String emailId;
+
+	@Column(name = "pin_code")
 	private String pinCode;
+
+	@Column(name = "state")
 	private String state;
+
+	@OneToOne(mappedBy = "contactInformation", fetch = FetchType.LAZY)
+	private User user;
 
 	public ContactInformation() {
 	}
@@ -88,6 +117,14 @@ public class ContactInformation implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
