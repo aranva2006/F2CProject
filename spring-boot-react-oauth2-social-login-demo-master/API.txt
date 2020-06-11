@@ -1,0 +1,3 @@
+http://localhost:8009/prodmaint/activeProducts
+http://localhost:8009/prodmaint/getProduct/GN_500GM_A5
+http://localhost:8060/custmaint/get/9036135743

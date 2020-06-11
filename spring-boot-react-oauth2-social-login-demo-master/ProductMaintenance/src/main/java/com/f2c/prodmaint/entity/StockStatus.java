@@ -2,6 +2,7 @@ package com.f2c.prodmaint.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,18 +16,19 @@ public class StockStatus implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="stock_status_id")
+	@Column(name="STOCK_STATUS_ID")
 	private int stockStatusId;
 
-	@Column(name="stocks_closed")
+	@Column(name="STOCKS_CLOSED")
 	private int stocksClosed;
 
-	@Column(name="stocks_open")
+	@Column(name="STOCKS_OPEN")
 	private int stocksOpen;
 
-	@OneToOne(mappedBy = "stockStatus")
-	private ProductStock productStock;
-	
+	//bi-directional many-to-one association to ProductStock
+	@OneToMany(mappedBy="stockStatus")
+	private List<ProductStock> productStocks;
+
 	public StockStatus() {
 	}
 
@@ -54,12 +56,26 @@ public class StockStatus implements Serializable {
 		this.stocksOpen = stocksOpen;
 	}
 
-	public ProductStock getProductStock() {
+	public List<ProductStock> getProductStocks() {
+		return this.productStocks;
+	}
+
+	public void setProductStocks(List<ProductStock> productStocks) {
+		this.productStocks = productStocks;
+	}
+
+	public ProductStock addProductStock(ProductStock productStock) {
+		getProductStocks().add(productStock);
+		productStock.setStockStatus(this);
+
 		return productStock;
 	}
 
-	public void setProductStock(ProductStock productStock) {
-		this.productStock = productStock;
+	public ProductStock removeProductStock(ProductStock productStock) {
+		getProductStocks().remove(productStock);
+		productStock.setStockStatus(null);
+
+		return productStock;
 	}
 
 }

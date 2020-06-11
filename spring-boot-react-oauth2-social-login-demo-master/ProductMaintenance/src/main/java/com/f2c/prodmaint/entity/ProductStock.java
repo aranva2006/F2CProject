@@ -15,45 +15,43 @@ public class ProductStock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="product_stock_detail_id")
-	private int productDetailId;
+	@Column(name="PRODUCT_STOCK_ID")
+	private int productStockId;
 
-	@Column(name="ordered_quantity")
+	@Column(name="ORDERED_QUANTITY")
 	private int orderedQuantity;
-
+	
 	@Column(name="price")
 	private int price;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="product_id")
-	private List<Product> product;
-	
-	@OneToOne
-	@JoinColumn(name="stock_status_id")
-	private StockStatus stockStatus;
-	
-	@OneToOne
-	@JoinColumn(name="product_source_id")
-	private ProductSource productSource;
 
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="product_id")
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
-	
+
+	//bi-directional many-to-one association to StockStatus
+	@ManyToOne
+	@JoinColumn(name="STOCK_STATUS_ID")
+	private StockStatus stockStatus;
+
+	//bi-directional many-to-one association to ProductSourceDetail
+	@ManyToOne
+	@JoinColumn(name="PRODUCT_SOURCE_ID")
+	private ProductSourceDetail productSourceDetail;
+
 	public ProductStock() {
 	}
 
-	public int getProductDetailId() {
-		return productDetailId;
+	public int getProductStockId() {
+		return this.productStockId;
 	}
 
-	public void setProductDetailId(int productDetailId) {
-		this.productDetailId = productDetailId;
+	public void setProductStockId(int productStockId) {
+		this.productStockId = productStockId;
 	}
 
 	public int getOrderedQuantity() {
-		return orderedQuantity;
+		return this.orderedQuantity;
 	}
 
 	public void setOrderedQuantity(int orderedQuantity) {
@@ -61,7 +59,7 @@ public class ProductStock implements Serializable {
 	}
 
 	public int getPrice() {
-		return price;
+		return this.price;
 	}
 
 	public void setPrice(int price) {
@@ -69,7 +67,7 @@ public class ProductStock implements Serializable {
 	}
 
 	public Product getProduct() {
-		return product;
+		return this.product;
 	}
 
 	public void setProduct(Product product) {
@@ -77,19 +75,19 @@ public class ProductStock implements Serializable {
 	}
 
 	public StockStatus getStockStatus() {
-		return stockStatus;
+		return this.stockStatus;
 	}
 
 	public void setStockStatus(StockStatus stockStatus) {
 		this.stockStatus = stockStatus;
 	}
 
-	public ProductSource getProductSource() {
-		return productSource;
+	public ProductSourceDetail getProductSourceDetail() {
+		return this.productSourceDetail;
 	}
 
-	public void setProductSource(ProductSource productSource) {
-		this.productSource = productSource;
+	public void setProductSourceDetail(ProductSourceDetail productSourceDetail) {
+		this.productSourceDetail = productSourceDetail;
 	}
 
 }

@@ -1,15 +1,19 @@
 package com.f2c.prodmaint.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUCT_SOURCE")
-public class ProductSource {
+@Table(name = "PRODUCT_SOURCE_DETAILS")
+public class ProductSourceDetails  implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "product_source_id")
 	private int productSourceId;
@@ -39,9 +43,12 @@ public class ProductSource {
 	private String productSourceCountry;
 
 	@ManyToOne
-	@JoinColumn(name = "product_source_type_id")
-	private ProductSourceType productSourceType;
+	@JoinColumn(name = "user_type_id")
+	private UserType userType;
 
+	@OneToOne
+	private ProductStock productStock;
+	
 	public int getProductSourceId() {
 		return productSourceId;
 	}
@@ -114,12 +121,20 @@ public class ProductSource {
 		this.productSourceCountry = productSourceCountry;
 	}
 
-	public ProductSourceType getProductSourceType() {
-		return productSourceType;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setProductSourceType(ProductSourceType productSourceType) {
-		this.productSourceType = productSourceType;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public ProductStock getProductStock() {
+		return productStock;
+	}
+
+	public void setProductStock(ProductStock productStock) {
+		this.productStock = productStock;
 	}
 
 }

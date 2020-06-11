@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f2c.prodmaint.component.ProductComponent;
-import com.f2c.prodmaint.entity.Product;
 import com.f2c.prodmaint.entity.beans.ProductDetails;
 
 @RestController

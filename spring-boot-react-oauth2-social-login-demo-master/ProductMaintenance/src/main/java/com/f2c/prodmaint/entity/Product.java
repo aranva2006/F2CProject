@@ -16,25 +16,27 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="product_id")
+	@Column(name="PRODUCT_ID")
 	private int productId;
 
-	@Column(name="product_code")
+	@Column(name="LAST_ADDED")
+	private Timestamp lastAdded;
+
+	@Column(name="PRODUCT_CODE")
 	private String productCode;
 
-	@Column(name="product_desc")
+	@Column(name="PRODUCT_DESC")
 	private String productDesc;
-	
-	@Column(name="last_added")
-	private Timestamp lastAdded;
-	
-	@Column(name="product_status")
+
+	@Column(name="PRODUCT_STATUS")
 	private String productStatus;
 
+	//bi-directional many-to-one association to ProductCategory
 	@ManyToOne
-	@JoinColumn(name="product_category_id")
+	@JoinColumn(name="PRODUCT_CATEGORY_ID")
 	private ProductCategory productCategory;
 
+	//bi-directional many-to-one association to ProductStock
 	@OneToMany(mappedBy="product")
 	private List<ProductStock> productStocks;
 
@@ -71,6 +73,14 @@ public class Product implements Serializable {
 
 	public void setProductDesc(String productDesc) {
 		this.productDesc = productDesc;
+	}
+
+	public String getProductStatus() {
+		return this.productStatus;
+	}
+
+	public void setProductStatus(String productStatus) {
+		this.productStatus = productStatus;
 	}
 
 	public ProductCategory getProductCategory() {

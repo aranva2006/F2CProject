@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class ProductStockDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int productDetailId;
+	private int productStockId;
 	private int stockStatusId;
 	private int orderedQuantity;
 	private int stocksOpen;
 	private int stocksClosed;
 	private int price;
-	private ProductSourceDetails stockSource;
+	private ProductSourceDetails productSource;
 	
 	public ProductStockDetails() {
 	}
 
-	public int getProductDetailId() {
-		return productDetailId;
+	public int getProductStockId() {
+		return productStockId;
 	}
 
-	public void setProductDetailId(int productDetailId) {
-		this.productDetailId = productDetailId;
+	public void setProductStockId(int productStockId) {
+		this.productStockId = productStockId;
 	}
 
 	public int getStockStatusId() {
@@ -55,20 +55,20 @@ public class ProductStockDetails implements Serializable {
 		this.stocksClosed = stocksClosed;
 	}
 
+	public ProductSourceDetails getProductSource() {
+		return productSource;
+	}
+
+	public void setProductSource(ProductSourceDetails productSource) {
+		this.productSource = productSource;
+	}
+
 	public int getPrice() {
 		return price;
 	}
 
 	public void setPrice(int price) {
 		this.price = price;
-	}
-
-	public ProductSourceDetails getStockSource() {
-		return stockSource;
-	}
-
-	public void setStockSource(ProductSourceDetails stockSource) {
-		this.stockSource = stockSource;
 	}
 
 }

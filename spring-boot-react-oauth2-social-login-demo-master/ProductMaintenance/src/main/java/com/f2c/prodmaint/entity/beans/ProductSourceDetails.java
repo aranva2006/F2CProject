@@ -1,5 +1,6 @@
 package com.f2c.prodmaint.entity.beans;
 
+
 public class ProductSourceDetails {
 	private int productSourceId;
 	private String productSourceFirstName;
@@ -10,8 +11,7 @@ public class ProductSourceDetails {
 	private String productSourceDistrict;
 	private String productSourceState;
 	private String productSourceCountry;
-
-	private ProductSourceTypeDetails productSourceTypeDetails;
+	private UserType userType;
 
 	public int getProductSourceId() {
 		return productSourceId;
@@ -85,12 +85,12 @@ public class ProductSourceDetails {
 		this.productSourceCountry = productSourceCountry;
 	}
 
-	public ProductSourceTypeDetails getProductSourceTypeDetails() {
-		return productSourceTypeDetails;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setProductSourceTypeDetails(ProductSourceTypeDetails productSourceTypeDetails) {
-		this.productSourceTypeDetails = productSourceTypeDetails;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 }

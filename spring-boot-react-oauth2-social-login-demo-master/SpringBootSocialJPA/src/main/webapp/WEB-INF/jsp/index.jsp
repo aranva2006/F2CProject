@@ -246,6 +246,8 @@
                               </div>
                               <div class="row no-gutters">
                               	 <c:forEach var="product" items="${products}">
+                              	 	<c:if test="${not empty product.productStocks}">
+                              	 	 <c:forEach var="productstock" items="${product.productStocks}">
 								     <div class="col-md-12">
                                       <div class="product">
                                        <a href="#">
@@ -257,7 +259,7 @@
                                           <div class="product-body">
                                              <h5><c:out value="${product.productCode}"/></h5>
                                              <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
-                                             <p class="offer-price mb-0">$450.99 <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$800.99</span></p>
+                                             <p class="offer-price mb-0"><c:out value="${productStock.stocksOpen}"/><i class="mdi mdi-tag-outline"></i><br><%-- <span class="regular-price"><c:out value="${productStock.price}"/></span> --%></p>
                                           </div>
                                           <div class="product-detail">
                                              <p>
@@ -270,6 +272,34 @@
                                        </a>
                                     </div>
                                   </div>
+                                  </c:forEach>
+                                 </c:if>
+                                 <c:if test="${empty product.productStocks}">
+                                 	<div class="col-md-12">
+                                      <div class="product">
+                                       <a href="#">
+                                          <div class="product-header">
+                                             <span class="badge badge-success"><c:out value="${product.productCode}"/></span>
+                                             <!-- <img alt="" src="https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid"> -->
+                                             <img alt="" src="<c:url value="/images/prod-image-500x500.jpg"/>" class="img-fluid"/>
+                                          </div>
+                                          <div class="product-body">
+                                             <h5><c:out value="${product.productCode}"/></h5>
+                                             <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
+                                             <p class="offer-price mb-0">Out Of Stock<i class="mdi mdi-tag-outline"></i><br><span class="regular-price">Out Of Stock</span></p>
+                                          </div>
+                                          <div class="product-detail">
+                                             <p>
+                                                <c:out value="${product.productDesc}"/> 
+                                             </p>
+                                          </div>
+                                          <div class="product-footer">
+                                             <button class="btn btn-secondary btn-sm float-right" type="button"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+                                          </div>
+                                       </a>
+                                    </div>
+                                  </div>
+                                 </c:if>
 								 </c:forEach>
                               </div>
 							  <nav>

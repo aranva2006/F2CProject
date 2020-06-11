@@ -13,8 +13,8 @@ import com.f2c.prodmaint.entity.ProductStock;
 import com.f2c.prodmaint.entity.beans.ProductCategoryDetails;
 import com.f2c.prodmaint.entity.beans.ProductDetails;
 import com.f2c.prodmaint.entity.beans.ProductSourceDetails;
-import com.f2c.prodmaint.entity.beans.ProductSourceTypeDetails;
 import com.f2c.prodmaint.entity.beans.ProductStockDetails;
+import com.f2c.prodmaint.entity.beans.UserType;
 import com.f2c.prodmaint.repository.ProductRepository;
 
 @Service
@@ -50,31 +50,30 @@ public class ProductComponent {
 		List<ProductStockDetails> productStocks = new ArrayList<ProductStockDetails>();
 		for (ProductStock productStock : product.getProductStocks()) {
 			ProductStockDetails productStockDetails = new ProductStockDetails();
-			productStockDetails.setProductDetailId(productStock.getProductDetailId());
+			productStockDetails.setProductStockId(productStock.getProductStockId());
 			productStockDetails.setOrderedQuantity(productStock.getOrderedQuantity());
 			productStockDetails.setStockStatusId(productStock.getStockStatus().getStockStatusId());
 			productStockDetails.setStocksOpen(productStock.getStockStatus().getStocksOpen());
 			productStockDetails.setStocksClosed(productStock.getStockStatus().getStocksClosed());
 			productStockDetails.setPrice(productStock.getPrice());
 			
-			ProductSourceTypeDetails productSourceTypeDetails  = new ProductSourceTypeDetails();
-			productSourceTypeDetails.setProductDetailId(productStock.getProductSource().getProductSourceType().getProductSourceId());
-			productSourceTypeDetails.setProductSourceCode(productStock.getProductSource().getProductSourceType().getProductSourceTypeCode());
-			productSourceTypeDetails.setProductSourceDesc(productStock.getProductSource().getProductSourceType().getProductSourceTypeDesc());
+			UserType userType  = new UserType();
+			userType.setUserTypeId(productStock.getProductSourceDetail().getUserType().getUserTypeId());
+			userType.setUserTypeCode(productStock.getProductSourceDetail().getUserType().getUserTypeCode());
+			userType.setUserTypeDesc(productStock.getProductSourceDetail().getUserType().getUserTypeDesc());
 			
 			ProductSourceDetails productSourceDetails = new ProductSourceDetails();
-			productSourceDetails.setProductSourceId(productStock.getProductSource().getProductSourceId());
-			productSourceDetails.setProductSourceFirstName(productStock.getProductSource().getProductSourceFirstName());
-			productSourceDetails.setProductSourceLastName(productStock.getProductSource().getProductSourceLastName());
-			productSourceDetails.setProductSourceContactNumber1(productStock.getProductSource().getProductSourceContactNumber1());
-			productSourceDetails.setProductSourceContactNumber2(productStock.getProductSource().getProductSourceContactNumber2());
-			productSourceDetails.setProductSourceCity(productStock.getProductSource().getProductSourceCity());
-			productSourceDetails.setProductSourceDistrict(productStock.getProductSource().getProductSourceDistrict());
-			productSourceDetails.setProductSourceState(productStock.getProductSource().getProductSourceState());
-			productSourceDetails.setProductSourceCountry(productStock.getProductSource().getProductSourceCountry());
-			productSourceDetails.setProductSourceTypeDetails(productSourceTypeDetails);
-			productStockDetails.setStockSource(productSourceDetails);
-			
+			productSourceDetails.setProductSourceId(productStock.getProductSourceDetail().getProductSourceId());
+			productSourceDetails.setProductSourceFirstName(productStock.getProductSourceDetail().getProductSourceFirstName());
+			productSourceDetails.setProductSourceLastName(productStock.getProductSourceDetail().getProductSourceLastName());
+			productSourceDetails.setProductSourceContactNumber1(productStock.getProductSourceDetail().getProductSourceContactNumber1());
+			productSourceDetails.setProductSourceContactNumber2(productStock.getProductSourceDetail().getProductSourceContactNumber2());
+			productSourceDetails.setProductSourceCity(productStock.getProductSourceDetail().getProductSourceCity());
+			productSourceDetails.setProductSourceDistrict(productStock.getProductSourceDetail().getProductSourceDistrict());
+			productSourceDetails.setProductSourceState(productStock.getProductSourceDetail().getProductSourceState());
+			productSourceDetails.setProductSourceCountry(productStock.getProductSourceDetail().getProductSourceCountry());
+			productSourceDetails.setUserType(userType);
+			productStockDetails.setProductSource(productSourceDetails);
 			productStocks.add(productStockDetails);
 		}
 		productDetails.setProductStocks(productStocks);
