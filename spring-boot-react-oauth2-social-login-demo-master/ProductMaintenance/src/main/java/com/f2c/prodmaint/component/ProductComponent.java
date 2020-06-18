@@ -76,7 +76,7 @@ public class ProductComponent {
 			productStockDetails.setProductSource(productSourceDetails);
 			productStocks.add(productStockDetails);
 		}
-		productDetails.setProductStocks(productStocks);
+			productDetails.setProductStocks(productStocks);
 		return productDetails;
 	}
 

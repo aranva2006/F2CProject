@@ -110,6 +110,7 @@ public class AppUserDAO {
         // Random Password! TODO: Need send email to User!
         //
         String randomPassword = UUID.randomUUID().toString().substring(0, 5);
+        System.out.println("Password : " + randomPassword);
         String encrytedPassword = EncrytedPasswordUtils.encrytePassword(randomPassword);
         //
         appUser = new AppUser();

@@ -11,6 +11,7 @@ public class ProductStockDetails implements Serializable {
 	private int orderedQuantity;
 	private int stocksOpen;
 	private int stocksClosed;
+	private int price;
 
 	public ProductStockDetails() {
 	}
@@ -53,6 +54,14 @@ public class ProductStockDetails implements Serializable {
 
 	public void setStocksClosed(int stocksClosed) {
 		this.stocksClosed = stocksClosed;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

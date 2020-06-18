@@ -2,7 +2,9 @@ package com.f2c.social.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -16,6 +18,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.security.SocialAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -28,12 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import com.f2c.prodmaint.entity.beans.ProductDetails;
+import com.f2c.prodmaint.entity.beans.UserInfo;
 import com.f2c.social.dao.AppUserDAO;
 import com.f2c.social.entity.AppRole;
 import com.f2c.social.entity.AppUser;
@@ -77,10 +78,21 @@ public class MainController {
 	}
 
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcomePage(Model model) {
+	public String welcomePage(Model model, Principal principal) {
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "This is welcome page!");
-
+		
+		if (principal != null && ((Authentication) principal).isAuthenticated()) {
+			UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
+			Connection conn = ((SocialAuthenticationToken) principal).getConnection();		
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUserName(loginedUser.getUsername());
+			userInfo.setDisplayName(convertToTitleCaseSplitting(conn.getDisplayName()));
+			userInfo.setImageUrl(conn.getImageUrl());
+			userInfo.setFirstName(conn.getDisplayName());
+			userInfo.setIsAuthenticated("T");
+			model.addAttribute("userInfo", userInfo);
+		}
 		ResponseEntity<List<ProductDetails>> response = restTemplate.exchange(
 				"http://localhost:8009/prodmaint/activeProducts", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<ProductDetails>>() {
@@ -152,6 +164,11 @@ public class MainController {
 		return "index";
 	}
 
+	@RequestMapping(value = { "/loginPage" }, method = RequestMethod.GET)
+	public String loginPage(Model model) {
+		return "loginPage";
+	}
+
 	// User login with social networking,
 	// but does not allow the app to view basic information
 	// application will redirect to page / signin.
@@ -221,4 +238,16 @@ public class MainController {
 		return builder.build();
 	}
 	
+	private final String WORD_SEPARATOR = " ";
+	 
+	public String convertToTitleCaseSplitting(String text) {
+		if (text == null || text.isEmpty()) {
+			return text;
+		}
+
+		return Arrays.stream(text.split(WORD_SEPARATOR)).map(
+				word -> word.isEmpty() ? word : Character.toTitleCase(word.charAt(0)) + word.substring(1).toLowerCase())
+				.collect(Collectors.joining(WORD_SEPARATOR));
+	}
+
 }
