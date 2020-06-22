@@ -117,7 +117,6 @@ public class AppUserDAO {
         appUser.setEnabled(true);
         appUser.setEncrytedPassword(encrytedPassword);
         appUser.setUserName(userName);
-        appUser.setEmail(email);
         appUser.setFirstName(userProfile.getFirstName());
         appUser.setLastName(userProfile.getLastName());
   
@@ -134,7 +133,6 @@ public class AppUserDAO {
     public AppUser registerNewUserAccount(AppUserForm appUserForm, List<String> roleNames) {
         AppUser appUser = new AppUser();
         appUser.setUserName(appUserForm.getUserName());
-        appUser.setEmail(appUserForm.getEmail());
         appUser.setFirstName(appUserForm.getFirstName());
         appUser.setLastName(appUserForm.getLastName());
         appUser.setEnabled(true);

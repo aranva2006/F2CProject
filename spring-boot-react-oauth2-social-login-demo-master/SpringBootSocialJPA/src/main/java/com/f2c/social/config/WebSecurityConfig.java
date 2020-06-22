@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// Submit URL of login page.
 				.loginProcessingUrl("/j_spring_security_check") // Submit URL
 				.loginPage("/login")//
-				.defaultSuccessUrl("/index")//
+				.defaultSuccessUrl("/loginSuccessful")//
 				.failureUrl("/login?error=true")//
 				.usernameParameter("username")//
 				.passwordParameter("password");
@@ -56,9 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
 		// Spring Social Config.
-		http.apply(new SpringSocialConfigurer())
-				//
-				.signupUrl("/signup");
+		http.apply(new SpringSocialConfigurer()).signupUrl("/signup");
 
 	}
 

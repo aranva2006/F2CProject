@@ -15,8 +15,7 @@
       <!-- Include _menu.html -->
       <th:block th:include="/_menu"></th:block>
       <h1>Register</h1>
-      <h2 style="color:blue;"
-         th:if="${myForm.signInProvider != null}">Signup with <span th:utex="${myForm.signInProvider}"></span></h2>
+      <h2 style="color:blue;" th:if="${myForm.signInProvider != null}">Signup with <span th:utex="${myForm.signInProvider}"></span></h2>
       <form th:object="${myForm}" method="POST">
          <input type="hidden" th:field="*{userId}"  />
          <input type="hidden" th:field="*{signInProvider}" />  

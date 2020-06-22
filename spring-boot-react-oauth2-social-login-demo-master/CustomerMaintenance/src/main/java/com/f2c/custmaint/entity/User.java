@@ -17,40 +17,35 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="PHONE_NUMBER")
-	private String phoneNumber;
-
+	@Column(name="mail_id")
+	private String mailId;
+	
 	private String firstname;
 
 	private String lastname;
 
-	//bi-directional many-to-one association to SocietyDetail
 	@ManyToOne
 	@JoinColumn(name="SCOCEITY_ID")
 	private SocietyDetail societyDetail;
 
-	//bi-directional many-to-one association to ContactInformation
 	@ManyToOne
 	@JoinColumn(name="CONTACT_ID")
 	private ContactInformation contactInformation;
 
-	//bi-directional many-to-one association to UserType
 	@ManyToOne
 	@JoinColumn(name="USER_TYPE_ID")
 	private UserType userType;
-
+	
 	@OneToMany(mappedBy = "user")
 	private Set<CustomerOrder> customerOrders;
+
+	@Column(name = "UC_USER_NAME")
+	private String userConnUserName;
+	
+	@Column(name = "APP_USER_NAME")
+	private String appUserName;
 	
 	public User() {
-	}
-
-	public String getPhoneNumber() {
-		return this.phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 	public String getFirstname() {
@@ -93,12 +88,36 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
+	public String getMailId() {
+		return mailId;
+	}
+
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
+	}
+
 	public Set<CustomerOrder> getCustomerOrders() {
 		return customerOrders;
 	}
 
 	public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
 		this.customerOrders = customerOrders;
+	}
+
+	public String getUserConnUserName() {
+		return userConnUserName;
+	}
+
+	public void setUserConnUserName(String userConnUserName) {
+		this.userConnUserName = userConnUserName;
+	}
+
+	public String getAppUserName() {
+		return appUserName;
+	}
+
+	public void setAppUserName(String appUserName) {
+		this.appUserName = appUserName;
 	}
 
 }

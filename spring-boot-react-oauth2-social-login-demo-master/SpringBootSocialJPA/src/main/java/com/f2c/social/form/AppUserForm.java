@@ -8,14 +8,16 @@ public class AppUserForm {
 	private Long userId;
 	private String email;
 	private String userName;
-
 	private String firstName;
 	private String lastName;
 	private String password;
 	private String role;
 	private String signInProvider;
 	private String providerUserId;
-
+	private String societyId;
+	private String confirmPassword;
+	private String headerErrors;
+	
 	public AppUserForm() {
 
 	}
@@ -107,6 +109,30 @@ public class AppUserForm {
 
 	public void setProviderUserId(String providerUserId) {
 		this.providerUserId = providerUserId;
+	}
+
+	public String getSocietyId() {
+		return societyId;
+	}
+
+	public void setSocietyId(String societyId) {
+		this.societyId = societyId;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getHeaderErrors() {
+		return headerErrors;
+	}
+
+	public void setHeaderErrors(String headerErrors) {
+		this.headerErrors = headerErrors;
 	}
 
 }

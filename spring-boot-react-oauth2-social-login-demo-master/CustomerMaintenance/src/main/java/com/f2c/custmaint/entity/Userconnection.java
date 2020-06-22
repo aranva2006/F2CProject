@@ -107,5 +107,4 @@ public class Userconnection implements Serializable {
 	public void setSecret(String secret) {
 		this.secret = secret;
 	}
-
 }

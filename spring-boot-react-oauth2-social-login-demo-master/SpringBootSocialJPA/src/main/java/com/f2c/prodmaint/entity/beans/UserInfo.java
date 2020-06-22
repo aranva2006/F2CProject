@@ -13,6 +13,7 @@ public class UserInfo  implements Serializable {
 	private Date expirty;
 	private String displayName;
 	private String isAuthenticated;
+	private String emailId;
 	public String getUserName() {
 		return userName;
 	}
@@ -75,5 +76,13 @@ public class UserInfo  implements Serializable {
 
 	public void setIsAuthenticated(String isAuthenticated) {
 		this.isAuthenticated = isAuthenticated;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 }

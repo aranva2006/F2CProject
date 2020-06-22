@@ -1,4 +1,4 @@
-package com.f2c.custmaint.entity.beans;
+package com.f2c.prodmaint.entity.beans;
 
 import java.io.Serializable;
 

@@ -66,5 +66,13 @@ public class SocialUserDetailsImpl implements SocialUserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+	public AppUser getAppUser() {
+		return appUser;
+	}
+
+	public void setAppUser(AppUser appUser) {
+		this.appUser = appUser;
+	}
  
 }	

@@ -33,12 +33,12 @@ public class CustomerComponent {
 	public UserDetails getCustomer(String phone_number) {
 		User userEntity = customerRepository.getOne(phone_number);
 		UserDetails userDetails = new UserDetails();
-		userDetails.setPhoneNumber(userEntity.getPhoneNumber());
+		userDetails.setEmailId(userEntity.getMailId());
 		userDetails.setFirstName(userEntity.getFirstname());
 		userDetails.setLastName(userEntity.getLastname());
 
 		SocietyDetail societyDetail = new SocietyDetail();
-		societyDetail.setScoceityId(userEntity.getSocietyDetail().getScoceityId());
+		societyDetail.setScocietyId(userEntity.getSocietyDetail().getScoceityId());
 		societyDetail.setSocietyAddressLine1(userEntity.getSocietyDetail().getSocietyAddressLine1());
 		societyDetail.setSocietyAddressLine2(userEntity.getSocietyDetail().getSocietyAddressLine2());
 		societyDetail.setSocietyCity(userEntity.getSocietyDetail().getSocietyCity());
@@ -94,5 +94,6 @@ public class CustomerComponent {
 		}
 		return userDetails;
 	}
+
 
 }

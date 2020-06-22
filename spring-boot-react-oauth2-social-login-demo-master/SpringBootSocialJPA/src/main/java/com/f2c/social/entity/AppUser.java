@@ -10,8 +10,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "App_User", //
 		uniqueConstraints = { //
-				@UniqueConstraint(name = "APP_USER_UK", columnNames = "User_Name"),
-				@UniqueConstraint(name = "APP_USER_UK2", columnNames = "Email") })
+				@UniqueConstraint(name = "APP_USER_UK", columnNames = "User_Name") })
 public class AppUser {
 
 	@Id
@@ -21,9 +20,6 @@ public class AppUser {
 
 	@Column(name = "User_Name", length = 36, nullable = false)
 	private String userName;
-
-	@Column(name = "Email", length = 128, nullable = false)
-	private String email;
 
 	@Column(name = "First_Name", length = 36, nullable = true)
 	private String firstName;
@@ -53,13 +49,11 @@ public class AppUser {
 		this.userName = userName;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	/*
+	 * public String getEmail() { return email; }
+	 * 
+	 * public void setEmail(String email) { this.email = email; }
+	 */
 
 	public String getFirstName() {
 		return firstName;

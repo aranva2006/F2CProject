@@ -35,11 +35,9 @@ public class CustomerOrder implements Serializable {
 	@Column(name="SCOCIETY_ID")
 	private int scocietyId;
 
-	//bi-directional many-to-one association to CustomerOrderInfo
 	@OneToMany(mappedBy="customerOrder")
 	private List<CustomerOrderInfo> customerOrderInfos;
 
-	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="PHONE_NUMBER")
 	private User user;
@@ -106,14 +104,12 @@ public class CustomerOrder implements Serializable {
 	public CustomerOrderInfo addCustomerOrderInfo(CustomerOrderInfo customerOrderInfo) {
 		getCustomerOrderInfos().add(customerOrderInfo);
 		customerOrderInfo.setCustomerOrder(this);
-
 		return customerOrderInfo;
 	}
 
 	public CustomerOrderInfo removeCustomerOrderInfo(CustomerOrderInfo customerOrderInfo) {
 		getCustomerOrderInfos().remove(customerOrderInfo);
 		customerOrderInfo.setCustomerOrder(null);
-
 		return customerOrderInfo;
 	}
 

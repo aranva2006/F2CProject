@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="Askbootstrap">
       <meta name="author" content="Askbootstrap">
-      <title>Groci - Organic Food & Grocery Market Template</title>
+      <title>F2C - Farmers to Customers</title>
       <!-- Favicon Icon -->
       <link rel="icon" type="image/png" href="https://askbootstrap.com/preview/groci/img/favicon2.png">
       <!-- Bootstrap core CSS -->
@@ -37,56 +37,85 @@
                            <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
                            <span class="sr-only">Close</span>
                            </button>
-                           <form  th:action="@{/j_spring_security_check}" method="post">
                               <div class="login-modal-right">
                                  <!-- Tab panes -->
                                  <div class="tab-content">
                                     <div class="tab-pane active" id="login" role="tabpanel">
-                                       <h5 class="heading-design-h5">Login to your account</h5>
+                                       <form  th:action="@{/j_spring_security_check}" method="post">
+	                                       <h5 class="heading-design-h5">Login to your account</h5>
+		                                       <fieldset class="form-group">
+		                                          <label>Enter Email/Mobile number</label>
+		                                          <input name="username" type="text" class="form-control" placeholder="+91 123 456 7890">
+		                                       </fieldset>
+		                                       <fieldset class="form-group">
+		                                          <label>Enter Password</label>
+		                                          <input name="password" type="password" class="form-control" placeholder="********">
+		                                       </fieldset>
+		                                       <fieldset class="form-group">
+		                                          <input type="submit" class="btn btn-lg btn-secondary btn-block" value="Enter to your account">
+		                                       </fieldset>
+	                                       <div class="login-with-sites text-center">
+	                                          <p>or Login with your social profile:</p>
+	                                          <button class="btn-facebook login-icons btn-lg"><i class="mdi mdi-facebook"></i><a th:href="@{/auth/facebook}">Face Book</a></button>
+	                                          <button class="btn-google login-icons btn-lg"><i class="mdi mdi-google"></i> <a th:href="@{/auth/google}">Google</a></button>
+	                                       </div>
+	                                       <div class="custom-control custom-checkbox">
+	                                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+	                                          <label class="custom-control-label" for="customCheck1">Remember me</label>
+	                                       </div>
+                                       </form>
+                                    </div>
+                                    <div class="tab-pane" id="register" role="tabpanel">
+                                    <form th:action="@{/signup}" th:object="${myForm}" method="POST">
+	                                       <h5 class="heading-design-h5">Register Now!</h5>
+	                                       <!-- <span class="error-message" th:if="${#fields.hasErrors('headerErrors')}" th:errors="*{headerErrors}">..</span> -->
 	                                       <fieldset class="form-group">
 	                                          <label>Enter Email/Mobile number</label>
-	                                          <input name="username" type="text" class="form-control" placeholder="+91 123 456 7890">
+	                                          <input type="text" th:field="*{userName}" class="form-control" placeholder="+91 123 456 7890">
+							                  <span class="error-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">..</span>
+	                                       </fieldset>
+	                                       <fieldset class="form-group">
+	                                          <label>First Name </label>
+	                                          <input type="text" th:field="*{firstName}" class="form-control" placeholder="firstName">
+	                                          <span class="error-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">..</span>
+	                                       </fieldset>
+	                                       <fieldset class="form-group">
+	                                          <label>Last Name </label>
+	                                          <input type="text" th:field="*{lastName}" class="form-control" placeholder="lastName">
+	                                           <span class="error-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">..</span>
 	                                       </fieldset>
 	                                       <fieldset class="form-group">
 	                                          <label>Enter Password</label>
-	                                          <input name="password" type="password" class="form-control" placeholder="********">
+	                                          <input type="password" th:field="*{password}" class="form-control" placeholder="password">
+	                                          <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
 	                                       </fieldset>
 	                                       <fieldset class="form-group">
-	                                          <input type="submit" class="btn btn-lg btn-secondary btn-block" value="Enter to your account">
+	                                          <label>Enter Confirm Password </label>
+	                                          <input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="confirmPassword">
+	                                          <span class="error-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">..</span>
 	                                       </fieldset>
-                                       <div class="login-with-sites text-center">
-                                          <p>or Login with your social profile:</p>
-                                          <button class="btn-facebook login-icons btn-lg"><i class="mdi mdi-facebook"></i><a th:href="@{/auth/facebook}">Face Book</a></button>
-                                          <button class="btn-google login-icons btn-lg"><i class="mdi mdi-google"></i> <a th:href="@{/auth/google}">Google</a></button>
-                                       </div>
-                                       <div class="custom-control custom-checkbox">
-                                          <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                          <label class="custom-control-label" for="customCheck1">Remember me</label>
-                                       </div>
-                                    </div>
-                                    <div class="tab-pane" id="register" role="tabpanel">
-                                       <h5 class="heading-design-h5">Register Now!</h5>
-                                       <fieldset class="form-group">
-                                          <label>Enter Email/Mobile number</label>
-                                          <input type="text" class="form-control" placeholder="+91 123 456 7890">
-                                       </fieldset>
-                                       <fieldset class="form-group">
-                                          <label>Enter Password</label>
-                                          <input type="password" class="form-control" placeholder="********">
-                                       </fieldset>
-                                       <fieldset class="form-group">
-                                          <label>Enter Confirm Password </label>
-                                          <input type="password" class="form-control" placeholder="********">
-                                       </fieldset>
-                                       <fieldset class="form-group">
-                                          <button type="submit" class="btn btn-lg btn-secondary btn-block">Create Your Account</button>
-                                       </fieldset>
-                                       <div class="custom-control custom-checkbox">
-                                          <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                          <label class="custom-control-label" for="customCheck2">I Agree with <a href="#">Term and Conditions</a></label>
-                                       </div>
+	                                       <fieldset class="form-group">
+	                                       	   <label>Society </label>
+	                                       	   <span class="input-group-btn categories-dropdown">
+	                                           <select class="form-control-select" th:field="*{societyId}">
+		                                           <!-- <option value="">Select Society </option> -->
+												   <option th:each="societyDetail:${societyList}" th:value="${societyDetail.scocietyId}" th:utext="${societyDetail.societyName}"></option>
+							                   </select>
+							                   <span class="error-message" th:if="${#fields.hasErrors('societyId')}" th:errors="*{societyId}">..</span>
+							                   </span>
+	                                       </fieldset>
+	                                       <fieldset class="form-group">
+	                                          <button type="submit" class="btn btn-lg btn-secondary btn-block">Create Your Account</button>
+	                                       </fieldset>
+	                                       <div class="custom-control custom-checkbox">
+	                                          <input type="checkbox" class="custom-control-input" id="customCheck2">
+	                                          <label class="custom-control-label" for="customCheck2">I Agree with <a href="#">Term and Conditions</a></label>
+	                                       </div>
+	                                 </form>
+	                                </div>
                                     </div>
                                  </div>
+                               </form>
                                  <div class="clearfix"></div>
                                  <div class="text-center login-footer-tab">
                                     <ul class="nav nav-tabs" role="tablist">
@@ -135,7 +164,7 @@
                   <ul class="list-inline main-nav-right">
                      <li class="list-inline-item">
                      	<div th:if="${userInfo}">
-                        	<a href="@{/logout}" class="btn btn-link"><i class="mdi mdi-account-circle"></i> Logout</a>
+                        	<a th:href="@{/logout}" class="btn btn-link"><i class="mdi mdi-account-circle"></i> Logout</a>
                         </div>
                         <div th:unless="${userInfo}">
                         	<a href="@{/login}" data-target="#bd-example-modal" data-toggle="modal" class="btn btn-link"><i class="mdi mdi-account-circle"></i> Login/Sign Up</a>
@@ -184,10 +213,9 @@
                      My Account
                      </a>
                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="my-profile.html"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  My Profile</a>
-                        <a class="dropdown-item" href="my-address.html"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  My Address</a>
-                        <a class="dropdown-item" href="wishlist.html"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  Wish List </a>
-                        <a class="dropdown-item" href="orderlist.html"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  Order List</a> 
+                        <a class="dropdown-item" href="/my-profile"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  My Profile</a>
+                        <a class="dropdown-item" href="/my-address"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  My Address</a>
+                        <a class="dropdown-item" href="/orderlist"><i class="mdi mdi-chevron-right" aria-hidden="true"></i>  Order List</a> 
                      </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -232,12 +260,13 @@
                               </span>
                            </div>
                            <div class="list-group">
-                              <a href="my-profile.html" class="list-group-item list-group-item-action active"><i aria-hidden="true" class="mdi mdi-account-outline"></i>  Products</a>
-                              <a href="my-address.html" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Profile</a>
-                              <a href="my-address.html" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Address</a>
-                              <a href="wishlist.html" class="list-group-item list-group-item-action "><i aria-hidden="true" class="mdi mdi-heart-outline"></i>  Wish List </a>
-                              <a href="orderlist.html" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-format-list-bulleted"></i>  Order List</a> 
-                              <a href="#" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-lock"></i>  Logout</a> 
+                              <a href="/" class="list-group-item list-group-item-action active"><i aria-hidden="true" class="mdi mdi-account-outline"></i>  Products</a>
+                              <div th:if="${userInfo}">
+	                              <a href="/my-profile" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Profile</a>
+	                              <a href="/my-address" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Address</a>
+	                              <a href="/orderlist" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-format-list-bulleted"></i>  Order List</a> 
+	                              <a href="#" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-lock"></i>  Logout</a> 
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -421,6 +450,5 @@
       </script>
    </body>
 
-<!-- Mirrored from askbootstrap.com/preview/groci/theme-two/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 May 2020 17:05:20 GMT -->
 </html>
 

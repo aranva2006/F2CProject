@@ -30,43 +30,51 @@ public class AppUserValidator implements Validator {
 
 		AppUserForm form = (AppUserForm) target;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "", "Email is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "", "User name is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "", "First name is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "", "Last name is required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "", "Password is required");
-
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "", "Password is required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "societyId", "", "Society is required");
+		if(!form.getPassword().equals(form.getConfirmPassword())) {
+			errors.rejectValue("headerErrors","","Passwords are not matching!");
+		}
 		if (errors.hasErrors()) {
 			return;
 		}
 
-		if (!emailValidator.isValid(form.getEmail())) {
-
+		if (!emailValidator.isValid(form.getUserName())) {
 			errors.rejectValue("email", "", "Email is not valid");
 			return;
 		}
 
 		AppUser userAccount = appUserDAO.findAppUserByUserName(form.getUserName());
 		if (userAccount != null) {
-			if (form.getUserId() == null) {
-				errors.rejectValue("userName", "", "User name is not available");
+			if (form.getUserName() == null) {
+				errors.rejectValue("userName", "", "Mail Id already exists");
 				return;
-			} else if (!form.getUserId().equals(userAccount.getUserId())) {
-				errors.rejectValue("userName", "", "User name is not available");
-				return;
-			}
-		}
-
-		userAccount = appUserDAO.findByEmail(form.getEmail());
-		if (userAccount != null) {
-			if (form.getUserId() == null) {
-				errors.rejectValue("email", "", "Email is not available");
-				return;
-			} else if (!form.getUserId().equals(userAccount.getUserId())) {
-				errors.rejectValue("email", "", "Email is not available");
+			} else if (!form.getUserName().equals(userAccount.getUserName())) {
+				errors.rejectValue("headerError", "", "Mail Id is not available");
 				return;
 			}
 		}
+		/*
+		 * if (userAccount != null) { if (form.getUserId() == null) {
+		 * errors.rejectValue("userName", "", "User name is not available"); return; }
+		 * else if (!form.getUserId().equals(userAccount.getUserId())) {
+		 * errors.rejectValue("headerError", "", "User name is not available"); return;
+		 * } }
+		 * 
+		 * userAccount = appUserDAO.findByEmail(form.getEmail()); if (userAccount !=
+		 * null) { if (form.getUserId() == null) { errors.rejectValue("email", "",
+		 * "Email is not available"); return; } else if
+		 * (!form.getUserId().equals(userAccount.getUserId())) {
+		 * errors.rejectValue("email", "", "Email is not available"); return; } } if
+		 * (userAccount != null) { if (form.getUserId() == null) {
+		 * errors.rejectValue("email", "", "Email is not available"); return; } else if
+		 * (!form.getUserId().equals(userAccount.getUserId())) {
+		 * errors.rejectValue("email", "", "Email is not available"); return; } }
+		 */
 	}
 
 }

@@ -5,21 +5,13 @@ import java.util.List;
 
 public class UserDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String phoneNumber;
+	private String emailId;
 	private String firstName;
 	private String lastName;
 	private ContactInformation contactInformation;
 	private SocietyDetail societyDetail;
 	private UserType userType;
 	private List<CustomerOrderDetails> customerOrderDetails;
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -67,6 +59,14 @@ public class UserDetails implements Serializable {
 
 	public void setCustomerOrderDetails(List<CustomerOrderDetails> customerOrderDetails) {
 		this.customerOrderDetails = customerOrderDetails;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 }
