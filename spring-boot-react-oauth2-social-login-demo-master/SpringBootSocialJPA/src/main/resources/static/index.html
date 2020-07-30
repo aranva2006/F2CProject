@@ -97,11 +97,11 @@
 	                                       <fieldset class="form-group">
 	                                       	   <label>Society </label>
 	                                       	   <span class="input-group-btn categories-dropdown">
-	                                           <select class="form-control-select" th:field="*{societyId}">
-		                                           <!-- <option value="">Select Society </option> -->
-												   <option th:each="societyDetail:${societyList}" th:value="${societyDetail.scocietyId}" th:utext="${societyDetail.societyName}"></option>
-							                   </select>
-							                   <span class="error-message" th:if="${#fields.hasErrors('societyId')}" th:errors="*{societyId}">..</span>
+		                                           <select class="form-control-select" th:field="*{societyId}">
+			                                           <!-- <option value="">Select Society </option> -->
+													   <option th:each="societyDetail:${societyList}" th:value="${societyDetail.scocietyId}" th:utext="${societyDetail.societyName}"></option>
+								                   </select>
+								                   <span class="error-message" th:if="${#fields.hasErrors('societyId')}" th:errors="*{societyId}">..</span>
 							                   </span>
 	                                       </fieldset>
 	                                       <fieldset class="form-group">
@@ -254,18 +254,16 @@
                         <div class="card account-left">
                            <div class="user-profile-header">
                            	   <span th:if="${userInfo}">
-	                              <img alt="logo" th:src="${userInfo.imageUrl}">
-	                              <h5 class="mb-1 text-secondary"><strong>Hi </strong><td th:text="${userInfo.displayName}"/></h5>
-	                              <p> +91 8568079956</p>
+                           	   	 <span th:if="${userInfo.imageUrl}"> <img alt="logo" th:src="${userInfo.imageUrl}"> </span>
+	                             <h5 class="mb-1 text-secondary"><strong>Hi </strong><td th:text="${userInfo.displayName}"/></h5>
                               </span>
                            </div>
                            <div class="list-group">
                               <a href="/" class="list-group-item list-group-item-action active"><i aria-hidden="true" class="mdi mdi-account-outline"></i>  Products</a>
                               <div th:if="${userInfo}">
 	                              <a href="/my-profile" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Profile</a>
-	                              <a href="/my-address" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i>  My Address</a>
 	                              <a href="/orderlist" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-format-list-bulleted"></i>  Order List</a> 
-	                              <a href="#" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-lock"></i>  Logout</a> 
+	                              <a th:href="@{/logout}" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-lock"></i> Logout</a> 
                               </div>
                            </div>
                         </div>

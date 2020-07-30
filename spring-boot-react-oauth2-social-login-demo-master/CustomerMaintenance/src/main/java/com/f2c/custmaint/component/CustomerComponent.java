@@ -9,11 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.f2c.custmaint.entity.AppUser;
 import com.f2c.custmaint.entity.CustomerOrder;
 import com.f2c.custmaint.entity.User;
 import com.f2c.custmaint.entity.beans.ContactInformation;
 import com.f2c.custmaint.entity.beans.CustomerOrderDetails;
 import com.f2c.custmaint.entity.beans.CustomerOrderInfo;
+import com.f2c.custmaint.entity.beans.ProfileInfo;
 import com.f2c.custmaint.entity.beans.SocietyDetail;
 import com.f2c.custmaint.entity.beans.UserDetails;
 import com.f2c.custmaint.entity.beans.UserType;
@@ -28,6 +30,17 @@ public class CustomerComponent {
 	@Autowired
 	public CustomerComponent(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
+	}
+	
+	public ProfileInfo updateAppUser(ProfileInfo profile) {
+		profile.getFirstName();
+		AppUser appUser = new AppUser();
+		appUser.setFirstName(profile.getFirstName());
+		appUser.setLastName(profile.getLastName());
+		appUser.setPhone(profile.getPhone());
+		appUser.setSocietyId(profile.getSocietyId());
+		appUser.setUserTypeId(1);
+		return profile;
 	}
 
 	public UserDetails getCustomer(String phone_number) {

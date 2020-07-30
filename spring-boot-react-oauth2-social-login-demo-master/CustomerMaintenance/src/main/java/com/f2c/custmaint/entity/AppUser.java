@@ -1,4 +1,4 @@
-package com.f2c.social.entity;
+package com.f2c.custmaint.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +34,7 @@ public class AppUser {
 	private String societyId;
 	
 	@Column(name = "user_type_id", length = 36, nullable = true)
-	private String userTypeId;
+	private int userTypeId;
 	
 	@Column(name = "Encryted_Password", length = 128, nullable = false)
 	private String encrytedPassword;
@@ -57,12 +57,6 @@ public class AppUser {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-	/*
-	 * public String getEmail() { return email; }
-	 * 
-	 * public void setEmail(String email) { this.email = email; }
-	 */
 
 	public String getFirstName() {
 		return firstName;
@@ -112,11 +106,11 @@ public class AppUser {
 		this.societyId = societyId;
 	}
 
-	public String getUserTypeId() {
+	public int getUserTypeId() {
 		return userTypeId;
 	}
 
-	public void setUserTypeId(String userTypeId) {
+	public void setUserTypeId(int userTypeId) {
 		this.userTypeId = userTypeId;
 	}
 

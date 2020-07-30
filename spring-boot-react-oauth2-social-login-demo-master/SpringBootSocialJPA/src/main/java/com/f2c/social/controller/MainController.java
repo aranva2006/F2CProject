@@ -2,18 +2,12 @@ package com.f2c.social.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,16 +31,21 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.f2c.prodmaint.entity.beans.ProductDetails;
-import com.f2c.prodmaint.entity.beans.SocietyDetail;
+import com.f2c.prodmaint.entity.beans.ProfileInfo;
 import com.f2c.prodmaint.entity.beans.UserInfo;
 import com.f2c.social.dao.AppUserDAO;
 import com.f2c.social.entity.AppRole;
 import com.f2c.social.entity.AppUser;
 import com.f2c.social.form.AppUserForm;
+import com.f2c.social.service.AppUserService;
+import com.f2c.social.service.ProductService;
+import com.f2c.social.service.SocietyService;
 import com.f2c.social.social.SocialUserDetailsImpl;
+import com.f2c.social.utils.F2CUtils;
 import com.f2c.social.utils.SecurityUtil;
 import com.f2c.social.utils.WebUtils;
 import com.f2c.social.validator.AppUserValidator;
+import com.f2c.social.validator.ProfileValidator;
 
 @Controller
 @Transactional
@@ -63,14 +62,21 @@ public class MainController {
 
 	@Autowired
 	private AppUserValidator appUserValidator;
-
+	
 	@Autowired
-	RestTemplate restTemplate;
+	private ProfileValidator profileValidator;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private SocietyService societyService;
+	
+	@Autowired
+	private AppUserService appUserService;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder dataBinder) {
-
-		// Form target
 		Object target = dataBinder.getTarget();
 		if (target == null) {
 			return;
@@ -78,16 +84,11 @@ public class MainController {
 		System.out.println("Target=" + target);
 
 		if (target.getClass() == AppUserForm.class) {
-			dataBinder.setValidator(appUserValidator);
+			dataBinder.addValidators(appUserValidator);
 		}
-	}
-
-	private List<SocietyDetail> getSocietyList() {
-		ResponseEntity<List<SocietyDetail>> response = restTemplate.exchange(
-				"http://localhost:8060/custmaint/getAllSocieties", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<SocietyDetail>>() {
-				});
-		return response.getBody();
+		if (target.getClass() == ProfileInfo.class) {
+			dataBinder.addValidators(profileValidator);
+		}
 	}
  
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
@@ -98,23 +99,43 @@ public class MainController {
 			model.addAttribute("userInfo" , getUserInfo(principal));
 		model.addAttribute("myForm", new AppUserForm());
 		
-		List<ProductDetails> products = getProductList();
+		List<ProductDetails> products = productService.getProductList();
 		model.addAttribute("products", products);
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		return "index";
 	}
 
-	@RequestMapping(value = { "/my-profile" }, method = RequestMethod.GET)
-	@PreAuthorize("isAuthenticated()")
-	public String profilePage(Model model, Principal principal) {
-		if (principal != null) {
-			model.addAttribute("title", "Welcome");
-			model.addAttribute("message", "This is welcome page!");
-			if (principal != null)
+	@RequestMapping(value = { "/save-profile" }, method = RequestMethod.POST)
+	public String saveProfile(WebRequest request, Model model,@ModelAttribute("profileInfo") @Validated ProfileInfo profileInfo,
+			BindingResult result,final RedirectAttributes redirectAttributes, Principal principal) {
+		if (result.hasErrors()) {
+			if (principal != null) {
 				model.addAttribute("userInfo", getUserInfo(principal));
+				model.addAttribute("societyList", societyService.getSocietyList());
+			}
+			return "my-profile";
+		}
+		if (principal != null) {
+			UserInfo userInfo = getUserInfo(principal);
+			model.addAttribute("userInfo", userInfo);
 			model.addAttribute("myForm", new AppUserForm());
-			model.addAttribute("products", getProductList());
-			model.addAttribute("societyList", getSocietyList());
+			model.addAttribute("products", productService.getProductList());
+			model.addAttribute("societyList", societyService.getSocietyList());
+			appUserService.updateAppUser(userInfo);
+			return "my-profile";
+		} else {
+			return "403Page";
+		}
+	}
+	
+	@RequestMapping(value = { "/my-profile" }, method = RequestMethod.GET)
+	public String profilePage(Model model, WebRequest request, Principal principal) {
+		if (principal != null) {
+			if (principal != null) {
+				model.addAttribute("userInfo", getUserInfo(principal));
+				model.addAttribute("profileInfo", getProfileInfo(principal));
+			}
+			model.addAttribute("societyList", societyService.getSocietyList());
 			return "my-profile";
 		} else {
 			return "403Page";
@@ -129,37 +150,48 @@ public class MainController {
 			if(principal instanceof UsernamePasswordAuthenticationToken) {
 				AppUser appUser = ((SocialUserDetailsImpl)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getAppUser();
 				userInfo.setUserName(loginedUser.getUsername());
-				userInfo.setFirstName(appUser.getFirstName());
-				userInfo.setLastName(appUser.getLastName());
-				userInfo.setIsAuthenticated("T");
-				userInfo.setDisplayName(convertToTitleCaseSplitting(appUser.getFirstName() + " " + appUser.getLastName()));
+				userInfo.setFirstName(F2CUtils.convertToCamelCase(appUser.getFirstName()));
+				userInfo.setLastName(F2CUtils.convertToCamelCase(appUser.getLastName()));
+				userInfo.setDisplayName(userInfo.getFirstName() + " " + userInfo.getLastName());
 			}
 
 			if(principal instanceof SocialAuthenticationToken) {
 				conn = ((SocialAuthenticationToken) principal).getConnection();
 				userInfo.setUserName(loginedUser.getUsername());
 				userInfo.setIsAuthenticated("T");
-				userInfo.setDisplayName(convertToTitleCaseSplitting(conn.getDisplayName()));
+				userInfo.setDisplayName(F2CUtils.convertToCamelCase(conn.getDisplayName()));
 				userInfo.setImageUrl(conn.getImageUrl());
 				userInfo.setFirstName(conn.getDisplayName());
 			}
-
 		}
 		return userInfo;
 	}
+	private ProfileInfo getProfileInfo(Principal principal) {
+		ProfileInfo profileInfo = new ProfileInfo();
+		if (principal != null && ((Authentication) principal).isAuthenticated()) {
+			UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
+			
+			if(principal instanceof UsernamePasswordAuthenticationToken) {
+				AppUser appUser = ((SocialUserDetailsImpl)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getAppUser();
+				profileInfo.setUserName(loginedUser.getUsername());
+				profileInfo.setFirstName(appUser.getFirstName());
+				profileInfo.setLastName(appUser.getLastName());
+				profileInfo.setDisplayName(F2CUtils.convertToCamelCase(appUser.getFirstName() + " " + appUser.getLastName()));
+			}
+			Connection conn;
+			if(principal instanceof SocialAuthenticationToken) {
+				conn = ((SocialAuthenticationToken) principal).getConnection();
+				profileInfo.setUserName(loginedUser.getUsername());
+				profileInfo.setDisplayName(F2CUtils.convertToCamelCase(conn.getDisplayName()));
+				profileInfo.setFirstName(conn.getDisplayName());
+			}
 
-	private List<ProductDetails> getProductList() {
-		ResponseEntity<List<ProductDetails>> response = restTemplate.exchange(
-				"http://localhost:8009/prodmaint/activeProducts", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<ProductDetails>>() {
-				});
-		return response.getBody();
+		}
+		return profileInfo;
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(Model model, Principal principal) {
-
-		// After user login successfully.
 		String userName = principal.getName();
 		System.out.println("User Name: " + userName);
 
@@ -167,7 +199,7 @@ public class MainController {
 
 		String userInfo = WebUtils.toString(loginedUser);
 		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		return "adminPage";
 	}
 
@@ -178,8 +210,8 @@ public class MainController {
 		AppUser loginedUser = ((SocialUserDetailsImpl) ((Authentication) principal).getPrincipal()).getAppUser();
 		loginedUser.getUserId();
 		model.addAttribute("userInfo" , getUserInfo(principal));
-		model.addAttribute("societyList", getSocietyList());
-		model.addAttribute("products", getProductList());
+		model.addAttribute("societyList", societyService.getSocietyList());
+		model.addAttribute("products", productService.getProductList());
 		model.addAttribute("myForm", new AppUserForm());
 		return "index";
 	}
@@ -189,8 +221,8 @@ public class MainController {
 		model.addAttribute("title", "Welcome");
 		model.addAttribute("message", "This is welcome page!");
 		model.addAttribute("userInfo" , getUserInfo(principal));
-		model.addAttribute("products", getProductList());
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("products", productService.getProductList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		model.addAttribute("myForm", new AppUserForm());
 		return "index";
 	}
@@ -199,7 +231,7 @@ public class MainController {
 	@Secured("ROLE_USER")
 	public String myAddressPage(Model model, Principal principal) {
 		model.addAttribute("userInfo" , getUserInfo(principal));
-		model.addAttribute("products", getProductList());
+		model.addAttribute("products", productService.getProductList());
 		model.addAttribute("myForm", new AppUserForm());
 		return "my-address";
 	}
@@ -219,15 +251,8 @@ public class MainController {
 
 	@RequestMapping(value = { "/index" }, method = RequestMethod.GET)
 	public String login(Model model) {
-		model.addAttribute("title", "Welcome");
-		model.addAttribute("message", "This is welcome page!");
-		ResponseEntity<List<ProductDetails>> response = restTemplate.exchange(
-				"http://localhost:8009/prodmaint/activeProducts", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<ProductDetails>>() {
-				});
-		List<ProductDetails> products = response.getBody();
-		model.addAttribute("products", products);
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("products", productService.getProductList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		return "index";
 	}
 
@@ -252,9 +277,9 @@ public class MainController {
 		} else {
 			myForm = new AppUserForm();
 		}
-		model.addAttribute("products", getProductList());
+		model.addAttribute("products", productService.getProductList());
 		model.addAttribute("myForm", myForm);
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		return "index";
 	}
 
@@ -293,25 +318,13 @@ public class MainController {
 		// After registration is complete, automatic login.
 		SecurityUtil.logInUser(registered, roleNames);
 		model.addAttribute("myForm", new AppUserForm());
-		model.addAttribute("societyList", getSocietyList());
+		model.addAttribute("societyList", societyService.getSocietyList());
 		return "index";
 	}
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
-	}
-
-	private final String WORD_SEPARATOR = " ";
-
-	public String convertToTitleCaseSplitting(String text) {
-		if (text == null || text.isEmpty()) {
-			return text;
-		}
-
-		return Arrays.stream(text.split(WORD_SEPARATOR)).map(
-				word -> word.isEmpty() ? word : Character.toTitleCase(word.charAt(0)) + word.substring(1).toLowerCase())
-				.collect(Collectors.joining(WORD_SEPARATOR));
 	}
 
 }
