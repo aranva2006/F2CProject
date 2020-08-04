@@ -19,16 +19,19 @@ public class AppUserComponent {
 	public AppUserComponent(AppUserRepository appUserRepository) {
 		this.appUserRepository = appUserRepository;
 	}
-	
-	public ProfileInfo updateAppUser(ProfileInfo profile) {
-		AppUser appUser = new AppUser();
-		appUser.setFirstName(profile.getFirstName());
-		appUser.setLastName(profile.getLastName());
-		appUser.setPhone(profile.getPhone());
-		appUser.setSocietyId(profile.getSocietyId());
-		appUser.setUserTypeId(1);
+
+	public ProfileInfo updateAppUser(ProfileInfo profileInfo) {
+		AppUser appUser = appUserRepository.getAppUserByUserName(profileInfo.getUserName());
+		appUser.setFirstName(profileInfo.getFirstName());
+		appUser.setLastName(profileInfo.getLastName());
+		appUser.setPhone(profileInfo.getPhone());
+		appUser.setSocietyId(profileInfo.getSocietyId());
 		appUserRepository.save(appUser);
-		return profile;
+		return profileInfo;
+	}
+
+	public AppUser getAppUser(String userName) {
+		return appUserRepository.getAppUserByUserName(userName);
 	}
 
 }

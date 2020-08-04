@@ -14,7 +14,7 @@ import com.f2c.order.entity.beans.CustomerOrderDetails;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/custmaint")
+@RequestMapping("/orderMaint")
 public class OrderController {
 	OrderComponent orderComponent;
 

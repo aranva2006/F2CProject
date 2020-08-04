@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductDetails> getProductList() {
 		ResponseEntity<List<ProductDetails>> response = restTemplate.exchange(
-				"http://localhost:8009/prodmaint/activeProducts", HttpMethod.GET, null,
+				"http://localhost:8009/product-service/prodmaint/activeProducts", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<ProductDetails>>() {
 				});
 		return response.getBody();

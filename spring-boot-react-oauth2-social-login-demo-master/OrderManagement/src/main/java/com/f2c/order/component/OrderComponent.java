@@ -26,7 +26,7 @@ public class OrderComponent {
 
 	public List<CustomerOrderDetails> getCustomerOrders(String phone_number) {
 		logger.info("Finding order history for user : " + phone_number);
-		List<CustomerOrder> customerOrders = orderRepository.findCustomerOrderByPhoneNumber(phone_number);
+		List<CustomerOrder> customerOrders = orderRepository.findCustomerOrderByMailId(phone_number);
 		List<CustomerOrderDetails> customerOrderDetails = new ArrayList<>();
 		List<CustomerOrderInfo> customerOrderInfos = new ArrayList<>();
 		for (CustomerOrder order : customerOrders) {

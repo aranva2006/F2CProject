@@ -19,7 +19,7 @@ public class SocietyServiceImpl implements SocietyService {
 	@Override
 	public List<SocietyDetail> getSocietyList() {
 		ResponseEntity<List<SocietyDetail>> response = restTemplate.exchange(
-				"http://localhost:8060/custmaint/getAllSocieties", HttpMethod.GET, null,
+				"http://localhost:8060/customer-service/custmaint/getAllSocieties", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<SocietyDetail>>() {
 				});
 		return response.getBody();

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.f2c.order.entity.CustomerOrder;
 
 public interface OrderRepository extends JpaRepository<CustomerOrder, String> {
-	List<CustomerOrder> findCustomerOrderByPhoneNumber(String phoneNumber);
+	List<CustomerOrder> findCustomerOrderByMailId(String mailId);
 }

@@ -34,6 +34,9 @@ public class CustomerOrder implements Serializable {
 
 	@Column(name="SCOCIETY_ID")
 	private int scocietyId;
+	
+	@Column(name="MAIL_ID")
+	private String mailId;
 
 	//bi-directional many-to-one association to CustomerOrderInfo
 	@OneToMany(mappedBy="customerOrder")
@@ -123,6 +126,14 @@ public class CustomerOrder implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getMailId() {
+		return mailId;
+	}
+
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
 	}
 
 }

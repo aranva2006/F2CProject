@@ -121,7 +121,8 @@ public class MainController {
 			model.addAttribute("myForm", new AppUserForm());
 			model.addAttribute("products", productService.getProductList());
 			model.addAttribute("societyList", societyService.getSocietyList());
-			appUserService.updateAppUser(userInfo);
+			profileInfo.setUserName(userInfo.getUserName());
+			appUserService.updateAppUser(profileInfo);
 			return "my-profile";
 		} else {
 			return "403Page";
@@ -177,6 +178,7 @@ public class MainController {
 				profileInfo.setFirstName(appUser.getFirstName());
 				profileInfo.setLastName(appUser.getLastName());
 				profileInfo.setDisplayName(F2CUtils.convertToCamelCase(appUser.getFirstName() + " " + appUser.getLastName()));
+				profileInfo.setPhone(appUser.getPhone());
 			}
 			Connection conn;
 			if(principal instanceof SocialAuthenticationToken) {

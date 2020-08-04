@@ -136,6 +136,7 @@ public class AppUserDAO {
         appUser.setFirstName(appUserForm.getFirstName());
         appUser.setLastName(appUserForm.getLastName());
         appUser.setEnabled(true);
+        appUser.setUserTypeId(1);
         String encrytedPassword = EncrytedPasswordUtils.encrytePassword(appUserForm.getPassword());
         appUser.setEncrytedPassword(encrytedPassword);
         this.entityManager.persist(appUser);
