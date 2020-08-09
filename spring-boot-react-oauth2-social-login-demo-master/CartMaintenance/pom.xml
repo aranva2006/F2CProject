@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.f2c</groupId>
-	<artifactId>CartDetailsManagement</artifactId>
+	<artifactId>CartMaintenance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CartDetailsManagement</name>
+	<name>CartMaintenance</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

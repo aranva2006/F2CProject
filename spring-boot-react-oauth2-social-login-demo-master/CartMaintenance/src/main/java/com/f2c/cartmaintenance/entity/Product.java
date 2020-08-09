@@ -1,4 +1,4 @@
-package com.f2c.CartDetailsManagement.entity;
+package com.f2c.cartmaintenance.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -7,11 +7,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 
 /**
@@ -39,9 +36,12 @@ public class Product implements Serializable {
 	@Column(name="PRODUCT_STATUS")
 	private String productStatus;
 
-	@OneToOne(mappedBy = "product")
-	private CartEntity cartentity;
+	@OneToMany(mappedBy="product")
+	private List<CartDetail> cartDetails;
 	
+	@OneToMany(mappedBy="product")
+	private List<ProductStock> productStocks;
+
 	public Product() {
 	}
 
@@ -85,13 +85,26 @@ public class Product implements Serializable {
 		this.productStatus = productStatus;
 	}
 
-	public CartEntity getCartentity() {
-		return cartentity;
+	public List<CartDetail> getCartDetails() {
+		return this.cartDetails;
 	}
 
-	public void setCartentity(CartEntity cartentity) {
-		this.cartentity = cartentity;
+	public void setCartDetails(List<CartDetail> cartDetails) {
+		this.cartDetails = cartDetails;
 	}
 
-	
+	public CartDetail addCartDetail(CartDetail cartDetail) {
+		getCartDetails().add(cartDetail);
+		cartDetail.setProduct(this);
+
+		return cartDetail;
+	}
+
+	public CartDetail removeCartDetail(CartDetail cartDetail) {
+		getCartDetails().remove(cartDetail);
+		cartDetail.setProduct(null);
+
+		return cartDetail;
+	}
+
 }

@@ -11,3 +11,5 @@ Hibernate: select appuser0_.user_id as user_id1_0_, appuser0_.enabled as enabled
 select appuser0_.user_id as user_id1_0_0_, appuser0_.enabled as enabled2_0_0_, appuser0_.encryted_password as encryted3_0_0_, appuser0_.first_name as first_na4_0_0_, appuser0_.last_name as last_nam5_0_0_, appuser0_.phone as phone6_0_0_, appuser0_.society_id as society_7_0_0_, appuser0_.user_name as user_nam8_0_0_, appuser0_.user_type_id as user_typ9_0_0_ from app_user appuser0_ where appuser0_.user_id=?
 select appuser0_.user_id as user_id1_0_0_, appuser0_.enabled as enabled2_0_0_, appuser0_.encryted_password as encryted3_0_0_, appuser0_.first_name as first_na4_0_0_, appuser0_.last_name as last_nam5_0_0_, appuser0_.phone as phone6_0_0_, appuser0_.society_id as society_7_0_0_, appuser0_.user_name as user_nam8_0_0_, appuser0_.user_type_id as user_typ9_0_0_ from app_user appuser0_ where appuser0_.user_id=?
 2020-08-04 16:42:50.174 TRACE 12588 --- [nio-8060-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [25]
+
+
