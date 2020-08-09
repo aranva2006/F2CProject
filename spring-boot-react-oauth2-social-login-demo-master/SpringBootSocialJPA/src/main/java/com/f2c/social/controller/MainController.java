@@ -149,11 +149,12 @@ public class MainController {
 			UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
 			Connection conn;
 			if(principal instanceof UsernamePasswordAuthenticationToken) {
-				AppUser appUser = ((SocialUserDetailsImpl)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getAppUser();
+				//AppUser appUser = ((SocialUserDetailsImpl)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getAppUser();
 				userInfo.setUserName(loginedUser.getUsername());
-				userInfo.setFirstName(F2CUtils.convertToCamelCase(appUser.getFirstName()));
-				userInfo.setLastName(F2CUtils.convertToCamelCase(appUser.getLastName()));
-				userInfo.setDisplayName(userInfo.getFirstName() + " " + userInfo.getLastName());
+				ProfileInfo profileInfo = appUserService.getProfileInfo(loginedUser.getUsername());
+				userInfo.setFirstName(F2CUtils.convertToCamelCase(profileInfo.getFirstName()));
+				userInfo.setLastName(F2CUtils.convertToCamelCase(profileInfo.getLastName()));
+				userInfo.setDisplayName(F2CUtils.convertToCamelCase(profileInfo.getFirstName() + " " + profileInfo.getLastName()));
 			}
 
 			if(principal instanceof SocialAuthenticationToken) {
@@ -173,12 +174,7 @@ public class MainController {
 			UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
 			
 			if(principal instanceof UsernamePasswordAuthenticationToken) {
-				AppUser appUser = ((SocialUserDetailsImpl)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getAppUser();
-				profileInfo.setUserName(loginedUser.getUsername());
-				profileInfo.setFirstName(appUser.getFirstName());
-				profileInfo.setLastName(appUser.getLastName());
-				profileInfo.setDisplayName(F2CUtils.convertToCamelCase(appUser.getFirstName() + " " + appUser.getLastName()));
-				profileInfo.setPhone(appUser.getPhone());
+				profileInfo = appUserService.getProfileInfo(loginedUser.getUsername());
 			}
 			Connection conn;
 			if(principal instanceof SocialAuthenticationToken) {

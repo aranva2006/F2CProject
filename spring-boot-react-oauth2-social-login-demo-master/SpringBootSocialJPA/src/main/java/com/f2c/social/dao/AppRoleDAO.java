@@ -44,7 +44,6 @@ public class AppRoleDAO {
 	}
 
 	public void createRoleFor(AppUser appUser, List<String> roleNames) {
-		//
 		for (String roleName : roleNames) {
 			AppRole role = this.findAppRoleByName(roleName);
 			if (role == null) {

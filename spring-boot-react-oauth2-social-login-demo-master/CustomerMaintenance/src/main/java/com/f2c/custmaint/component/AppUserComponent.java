@@ -21,7 +21,7 @@ public class AppUserComponent {
 	}
 
 	public ProfileInfo updateAppUser(ProfileInfo profileInfo) {
-		AppUser appUser = appUserRepository.getAppUserByUserName(profileInfo.getUserName());
+		AppUser appUser = appUserRepository.findOneByUserName(profileInfo.getUserName());
 		appUser.setFirstName(profileInfo.getFirstName());
 		appUser.setLastName(profileInfo.getLastName());
 		appUser.setPhone(profileInfo.getPhone());
@@ -31,7 +31,36 @@ public class AppUserComponent {
 	}
 
 	public AppUser getAppUser(String userName) {
-		return appUserRepository.getAppUserByUserName(userName);
+		return appUserRepository.findOneByUserName(userName);
 	}
 
+	public ProfileInfo getProfileInfoByUserName(String userName) {
+		AppUser appUser = appUserRepository.findOneByUserName(userName.trim());
+		ProfileInfo profileInfo = new ProfileInfo();
+		profileInfo.setFirstName(appUser.getFirstName());
+		profileInfo.setLastName(appUser.getLastName());
+		profileInfo.setPhone(appUser.getPhone());
+		profileInfo.setSocietyId(appUser.getSocietyId());
+		return profileInfo;
+	}
+
+	public ProfileInfo getProfileInfoById(Long id) {
+		AppUser appUser = appUserRepository.findOne(id);
+		ProfileInfo profileInfo = new ProfileInfo();
+		profileInfo.setFirstName(appUser.getFirstName());
+		profileInfo.setLastName(appUser.getLastName());
+		profileInfo.setPhone(appUser.getPhone());
+		profileInfo.setSocietyId(appUser.getSocietyId());
+		return profileInfo;
+	}
+	
+	public ProfileInfo getProfileInfoByPhone(String id) {
+		AppUser appUser = appUserRepository.findOneByPhone(id);
+		ProfileInfo profileInfo = new ProfileInfo();
+		profileInfo.setFirstName(appUser.getFirstName());
+		profileInfo.setLastName(appUser.getLastName());
+		profileInfo.setPhone(appUser.getPhone());
+		profileInfo.setSocietyId(appUser.getSocietyId());
+		return profileInfo;
+	}
 }

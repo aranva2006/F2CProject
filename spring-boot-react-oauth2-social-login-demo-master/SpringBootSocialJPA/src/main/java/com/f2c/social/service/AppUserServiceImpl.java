@@ -17,4 +17,11 @@ public class AppUserServiceImpl implements AppUserService {
 				profileInfo, ProfileInfo.class);
 	}
 
+	@Override
+	public ProfileInfo getProfileInfo(String userName) {
+		return customerMaintClient.getForObject(
+				"http://localhost:8060/customer-service/custmaint/getUserProfile/{userName}", ProfileInfo.class,
+				userName);
+	}
+
 }
